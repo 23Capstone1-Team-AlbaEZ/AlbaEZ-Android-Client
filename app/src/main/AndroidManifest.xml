@@ -34,7 +34,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data
                     android:host="oauth"
-                    android:scheme="string/native_appkey" />
+                    android:scheme="@string/native_appkey" />
             </intent-filter>
         </activity>
 
