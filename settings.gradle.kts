@@ -14,6 +14,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Alba_Ez"
+rootProject.name = "AlbaEz"
 include(":app")
  

@@ -1,4 +1,4 @@
-package com.example.alba_ez
+package com.example.AlbaEz
 
 import android.app.Application
 import com.kakao.sdk.common.KakaoSdk

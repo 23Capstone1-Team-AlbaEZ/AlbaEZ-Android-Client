@@ -1,10 +1,10 @@
-package com.example.alba_ez
+package com.example.AlbaEz
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.example.alba_ez.databinding.LoginPageBinding
+import com.example.AlbaEz.databinding.LoginPageBinding
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
