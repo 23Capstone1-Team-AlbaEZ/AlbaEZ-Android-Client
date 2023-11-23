@@ -1,4 +1,4 @@
-package com.example.alba_ez
+package com.example.AlbaEz
 
 import org.junit.Test
 

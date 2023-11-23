@@ -1,4 +1,4 @@
-package com.example.alba_ez.ui.home
+package com.example.AlbaEz.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.alba_ez.databinding.FragmentHomeBinding
+import com.example.AlbaEz.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 

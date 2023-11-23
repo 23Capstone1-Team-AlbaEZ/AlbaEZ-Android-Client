@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.alba_ez"
+    namespace = "com.example.AlbaEz"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.alba_ez"
+        applicationId = "com.example.AlbaEz"
         minSdk = 33
         targetSdk = 34
         versionCode = 1
