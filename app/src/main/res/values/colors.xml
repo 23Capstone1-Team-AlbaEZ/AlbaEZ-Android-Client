@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -7,4 +8,20 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    -->
+    <color name="albaez_pink">#F17070</color>
+    <color name="albaez_light_pink">#FFADAD</color>
+    <color name="albaez_white">#fffafa</color>
+    <color name="albaez_pure_white">#FFFFFF</color>
+
+    <color name="albaez_grey01">#333333</color> <!--dark grey for large/bold text-->
+    <color name="albaez_grey02">#787878</color> <!--light grey for light text-->
+    <color name="albaez_grey03">#787878</color> <!--light grey for light text-->
+    <color name="albaez_grey04">#434343</color> <!--dark grep for navigation icon-->
+
+    <color name="albaez_purple">#8270F1</color> <!--purple for daily pay text-->
+    <color name="albaez_yellow">#F1A93B</color> <!--yellow for hourly pay text-->
+    <color name="albaez_black">#FF000000</color>
+
+    <color name="albaez_transparent">#FF000000</color> <!--투명-->
 </resources>

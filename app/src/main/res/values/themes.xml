@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="Theme.AlbaEZClient" parent="android:Theme.Material.Light.NoActionBar" />
+    <!-- Base Application theme. -->
+    <style name="Theme.AlbaEZClient" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/albaez_pink</item>
+        <item name="colorPrimaryVariant">@color/albaez_light_pink</item>
+        <item name="colorOnPrimary">@color/albaez_pure_white</item>
+        <item name="colorSurface">@color/albaez_pure_white</item>
+    </style>
+    <style name="Theme.AlbaEZClient.Splash">
+        <item name="android:windowSplashScreenBackground">@color/albaez_pink</item>
+    </style>
 </resources>

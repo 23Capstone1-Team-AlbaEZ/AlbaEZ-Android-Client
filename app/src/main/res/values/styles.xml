@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Text Style -->
+    <style name="TextSubtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textColor">@color/albaez_grey01</item>
+    </style>
+
+    <style name="AlbaEZ" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:fontFamily">@font/allertastencil_regular</item>
+        <item name="android:textSize">46sp</item>
+        <item name="android:textColor">@color/albaez_pink</item>
+    </style>
+    <style name="AlbaCardView" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textColor">@color/albaez_pure_white</item>
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/nanumgothic_regular</item>
+    </style>
+    <style name="AlbaCardView.albaTimezone">
+        <item name="android:textSize">12sp</item>
+    </style>
+    <style name="AlbaCardView.AIRec">
+        <item name="android:textColor">@color/albaez_grey01</item>
+    </style>
+
+    <!--Splash Theme-->
+    <style name="LaunchTheme" parent="Theme.AlbaEZClient.Splash">
+        <item name="android:windowSplashScreenIconBackgroundColor">@color/albaez_pink</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_screen_logo</item>
+        <item name="android:windowSplashScreenBrandingImage">@drawable/splash_screen_brandname</item>
+    </style>
+</resources>
