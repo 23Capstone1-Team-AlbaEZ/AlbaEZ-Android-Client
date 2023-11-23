@@ -1,0 +1,94 @@
+{
+  "workingAlbaCard": [
+    {
+      "albaInfo": {
+        "workplaceName": "도미노피자 상도점",
+        "userRole": "주방",
+        "workplaceID": "dominoPizzaSangdo"
+      },
+      "albaTimezone": [
+        {
+          "albaDay":"월요일",
+          "albaTime":"09:00~16:00"
+        },
+        {
+          "albaDay":"수요일",
+          "albaTime":"17:00~23:00"
+        },
+        {
+          "albaDay":"금요일",
+          "albaTime":"17:00~23:00"
+        }
+      ]
+    }
+  ],
+  "gigJobRecommendPhrase": {
+    "text": "AI가 추천하는 긱잡 공고글을 확인해보세요!",
+    "icon_url": "https://github.com/23Capstone1-Team-AlbaEZ/AlbaEZ/assets/56679417/c98de216-16f2-46c4-9818-e62a08be2490"
+  },
+  "gigJobNoticeRecommendCard": [
+    {
+      "gigJobPostInfo": {
+        "gigJobPostTitle": "[숭실에듀/긴급] PPT 자료 제작 알바 모집",
+        "gigJobPostID": ""
+      },
+      "workplaceInfo": {
+        "workplaceName": "(주)숭실에듀",
+        "workplaceLocation": "동작구 상도동",
+        "workplaceDistance": "1km 이내",
+        "workplaceID": ""
+      },
+      "wageInfo": {
+        "payForm": "일급",
+        "wage": 57720
+      },
+      "albaTimezoneInfo": {
+        "albaTimeFrame": "09:00 ~ 14:00",
+        "albaDay": {
+          "form": "하루",
+          "timeFrame": "11/10"
+        }
+      }
+    },
+    {
+      "gigJobPostInfo": {
+        "gigJobPostTitle": "월화수 저녁 모집 (경력자 우대)",
+        "gigJobPostID": ""
+      },
+      "workplaceInfo": {
+        "workplaceName": "GS25 숭실대점",
+        "workplaceLocation": "동작구 상도동",
+        "workplaceDistance": "3km 이내",
+        "workplaceID": ""
+      },
+      "wageInfo": {
+        "payForm": "시급",
+        "wage": 9620
+      },
+      "albaTimezoneInfo": {
+        "albaTimeFrame": "19:00 ~ 23:00",
+        "albaDay": {
+          "form": "1주일 이내",
+          "timeFrame": "11/20~11/22"
+        }
+      }
+    }
+  ],
+  "workplaceCalendar": {
+    "text": "알바 캘린더 보기",
+    "icon_url": "https://github.com/23Capstone1-Team-AlbaEZ/AlbaEZ/assets/56679417/4d15d001-31c0-48b0-a796-b056aef03fcc",
+    "workplaceID": ""
+  },
+  "gigJobNoticePage": {
+    "text": "긱잡 구하기",
+    "icon_url": "https://github.com/23Capstone1-Team-AlbaEZ/AlbaEZ/assets/56679417/8867c806-f7a4-4615-9088-30d3a40d0b3e"
+  },
+  "wageManagement": {
+    "text": "급여 관리",
+    "icon_url": "https://github.com/23Capstone1-Team-AlbaEZ/AlbaEZ/assets/56679417/c6a70a03-68d6-4400-b3d2-90ad96e20543"
+  },
+  "resumeManagement": {
+    "text": "이력서 관리",
+    "icon_url": "https://github.com/23Capstone1-Team-AlbaEZ/AlbaEZ/assets/56679417/7c465c5a-c157-42b9-bac3-e6e2c16a522b"
+  }
+}
