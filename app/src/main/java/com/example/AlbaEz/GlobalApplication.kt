@@ -7,7 +7,7 @@ import com.kakao.sdk.common.util.Utility
 class GlobalApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        KakaoSdk.init(this, "d4be87432c543840305997a2e113d219")
+        KakaoSdk.init(this, "1c0cbde69cd30713300b94d1f4420b83")
 
         val keyHash = Utility.getKeyHash(this)
         Log.d("Hash", keyHash)
