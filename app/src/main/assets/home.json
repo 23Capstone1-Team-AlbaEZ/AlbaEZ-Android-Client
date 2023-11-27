@@ -12,6 +12,73 @@
           "albaTime":"09:00~16:00"
         },
         {
+          "albaDay":"금요일",
+          "albaTime":"17:00~23:00"
+        }
+      ]
+    },
+    {
+      "albaInfo": {
+        "workplaceName": "백다방 숭실대점",
+        "userRole": "주방",
+        "workplaceID": "backsdabang"
+      },
+      "albaTimezone": [
+        {
+          "albaDay":"월요일",
+          "albaTime":"09:00~16:00"
+        },
+        {
+          "albaDay":"화요일",
+          "albaTime":"17:00~23:00"
+        },
+        {
+          "albaDay":"수요일",
+          "albaTime":"17:00~23:00"
+        },
+        {
+          "albaDay":"목요일",
+          "albaTime":"17:00~23:00"
+        },
+        {
+          "albaDay":"금요일",
+          "albaTime":"17:00~23:00"
+        }
+      ]
+    },
+    {
+      "albaInfo": {
+        "workplaceName": "맥도날드 숭실대점",
+        "userRole": "주방",
+        "workplaceID": "macdonald"
+      },
+      "albaTimezone": [
+        {
+          "albaDay":"월요일",
+          "albaTime":"09:00~16:00"
+        },
+        {
+          "albaDay":"수요일",
+          "albaTime":"17:00~23:00"
+        },
+        {
+          "albaDay":"금요일",
+          "albaTime":"17:00~23:00"
+        }
+      ]
+    },
+    {
+      "albaInfo": {
+        "workplaceName": "교촌치킨 숭실대점",
+        "userRole": "주방",
+        "workplaceID": "macdonald"
+      },
+      "albaTimezone": [
+        {
+          "albaDay":"월요일",
+          "albaTime":"09:00~16:00"
+        },
+        {
           "albaDay":"수요일",
           "albaTime":"17:00~23:00"
         },

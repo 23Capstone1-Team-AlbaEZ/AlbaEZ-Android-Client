@@ -12,9 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AlbaEZClient">
         <activity
-            android:name=".SplashActivity"
-            android:exported="true"
-            android:theme="@style/Theme.AlbaEZClient.Splash">
+            android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,9 +21,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AlbaEZClient.Splash">
         </activity>
+
     </application>
 
 </manifest>

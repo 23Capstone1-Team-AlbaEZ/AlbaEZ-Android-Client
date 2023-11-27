@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.AlbaEz.ui.home.HomeFragment"
+        android:name="com.albaez.albaez_client.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.AlbaEz.ui.dashboard.DashboardFragment"
+        android:name="com.albaez.albaez_client.home.HomeFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notification"
-        android:name="com.example.AlbaEz.ui.notifications.NotificationsFragment"
+        android:name="com.albaez.albaez_client.home.HomeFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_notification" />
 </navigation>

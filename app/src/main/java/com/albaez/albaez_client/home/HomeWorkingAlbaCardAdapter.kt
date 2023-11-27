@@ -25,14 +25,19 @@ class HomeWorkingAlbaCardAdapter : ListAdapter<WorkingAlbaCardBanner, HomeWorkin
     class HomeWorkingAlbaCardAdapterViewHolder(view: View):RecyclerView.ViewHolder(view){
 
         private val workplaceNameView = view.findViewById<TextView>(R.id.tv_card_workplace_name)
-//        private val albaTimezoneView = view.findViewById<TextView>(R.id.tv_card_timezone1)
+        private val albaTimezoneView = view.findViewById<TextView>(R.id.tv_card_timezone)
+
+
 
         fun bind(banner: WorkingAlbaCardBanner?) {
             if (banner != null) {
-//                workplaceNameView.text = banner.albaInfo.workplaceName
-                workplaceNameView.text = "동작구 상도동 도미노ㅠㅣ자"
+                workplaceNameView.text = banner.albaInfo.workplaceName
+
+                val subdataStringBuilder = StringBuilder()
+                //workplaceNameView.text = "동작구 상도동 도미노피자"
+                val timeZoneSize = banner.albaTimezone
             }
-//          albaTimezone1View.text = banner.albaTimezone[]
+
         }
     }
 }
