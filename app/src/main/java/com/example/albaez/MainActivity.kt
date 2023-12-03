@@ -34,6 +34,8 @@ import androidx.compose.material3.MaterialTheme
 
 
 class MainActivity : ComponentActivity() {
+    private var homePressed = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -49,7 +51,12 @@ class MainActivity : ComponentActivity() {
                         items = items,
                         navController = navController,
                         modifier = Modifier,
-                        onItemClick = { /* handle item click if needed */ }
+                        onItemClick = { item ->
+                            // handle item click
+                            if (item.route == "home") {
+                                onHomeButtonPressed(navController)
+                            }
+                        }
                     )
                 }
             ) { innerPadding ->
@@ -64,6 +71,28 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+    override fun onBackPressed() {
+        if (homePressed) {
+            // If on the home screen and back is pressed, exit the app
+            super.onBackPressed()
+        } else {
+            // If not on the home screen, handle back press as usual (go back in navigation)
+            homePressed = false
+        }
+    }
+
+    private fun onHomeButtonPressed(navController: NavHostController) {
+        homePressed = true
+        navController.navigate("home") {
+            popUpTo(navController.graph.startDestinationRoute!!) {
+                saveState = true
+            }
+            launchSingleTop = true
+        }
+    }
+
+
 }
 
 @Composable
@@ -114,7 +143,14 @@ fun BottomNavigationBar(
                     onClick = {
                         onItemClick(item)
                         // 클릭한 아이템에 해당하는 라우트로 네비게이션 수행
-                        navController.navigate(item.route)
+                        navController.navigate(item.route){
+                            // Pop up to the start destination when reselecting the same item
+                            popUpTo(navController.graph.startDestinationRoute!!) {
+                                saveState = true
+                            }
+                            // Avoid multiple copies of the same destination when reselecting the same item
+                            launchSingleTop = true
+                        }
                     },
                     selectedContentColor = MaterialTheme.colorScheme.primary,
                     unselectedContentColor = Color.Gray,
