@@ -30,7 +30,6 @@ import androidx.compose.ui.unit.*
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Scaffold
-import androidx.compose.material3.MaterialTheme
 
 
 class MainActivity : ComponentActivity() {
@@ -131,7 +130,7 @@ fun BottomNavigationBar(
     AlbaEzTheme {
         BottomNavigation (
             modifier = modifier,
-            backgroundColor = MaterialTheme.colorScheme.primary,
+            backgroundColor = Color.White,
             elevation = 5.dp
         ) {
             // items 배열에 담긴 모든 항목을 추가합니다.
@@ -152,19 +151,24 @@ fun BottomNavigationBar(
                             launchSingleTop = true
                         }
                     },
-                    selectedContentColor = MaterialTheme.colorScheme.primary,
-                    unselectedContentColor = Color.Gray,
+//                    selectedContentColor = MaterialTheme.colorScheme.primary,
+//                    unselectedContentColor = Color.Gray,
                     icon = {
+                        val iconColor = if (selected) {
+                            Color(0xFFF17070)
+                        } else {
+                            Color.Gray
+                        }
                         Column(horizontalAlignment = CenterHorizontally) {
-                            // 뱃지카운트가 1이상이면, 아이콘에 뱃지카운트가 표시됩니다.
                             Icon(
                                 imageVector = item.icon,
-                                contentDescription = item.name
+                                contentDescription = item.name,
+                                tint = iconColor // 아이콘 색상 설정
                             )
                             Text(
                                 text = item.name,
                                 textAlign = TextAlign.Center,
-                                fontSize = 10.sp
+                                fontSize = 10.sp,
                             )
                         }
                     }
