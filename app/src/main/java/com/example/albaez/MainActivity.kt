@@ -2,6 +2,7 @@ package com.example.albaez
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -34,11 +35,12 @@ import androidx.compose.material.Scaffold
 
 class MainActivity : ComponentActivity() {
     private var homePressed = false
+    private lateinit var navController: NavHostController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val navController = rememberNavController()
+            navController = rememberNavController()
             Scaffold(
                 bottomBar = {
                     val items = listOf(
@@ -68,16 +70,6 @@ class MainActivity : ComponentActivity() {
                     Navigation(navController = navController)
                 }
             }
-        }
-    }
-
-    override fun onBackPressed() {
-        if (homePressed) {
-            // If on the home screen and back is pressed, exit the app
-            super.onBackPressed()
-        } else {
-            // If not on the home screen, handle back press as usual (go back in navigation)
-            homePressed = false
         }
     }
 
@@ -211,30 +203,28 @@ fun NotificationsScreen(){
 @Preview(showBackground = true)
 @Composable
 fun NavigationPreview() {
-    AlbaEzTheme {
-        val navController = rememberNavController()
-        Scaffold(
-            bottomBar = {
-                val items = listOf(
-                    BottomNavItem(name = "홈", route = "home", icon = Icons.Default.Home),
-                    BottomNavItem(name = "알림", route = "notifications", icon = Icons.Default.Notifications),
-                    BottomNavItem(name = "마이페이지", route = "mypage", icon = Icons.Default.Person)
-                )
-                BottomNavigationBar(
-                    items = items,
-                    navController = navController,
-                    modifier = Modifier,
-                    onItemClick = { /* handle item click if needed */ }
-                )
-            }
-        ) { innerPadding ->
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(innerPadding)
-            ) {
-                Navigation(navController = navController)
-            }
+    val navController = rememberNavController()
+    Scaffold(
+        bottomBar = {
+            val items = listOf(
+                BottomNavItem(name = "홈", route = "home", icon = Icons.Default.Home),
+                BottomNavItem(name = "알림", route = "notifications", icon = Icons.Default.Notifications),
+                BottomNavItem(name = "마이페이지", route = "mypage", icon = Icons.Default.Person)
+            )
+            BottomNavigationBar(
+                items = items,
+                navController = navController,
+                modifier = Modifier,
+                onItemClick = { /* handle item click if needed */ }
+            )
+        }
+    ) { innerPadding ->
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+        ) {
+            Navigation(navController = navController)
         }
     }
 }
