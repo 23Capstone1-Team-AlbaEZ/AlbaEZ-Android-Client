@@ -59,6 +59,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.myalbaez.ui.theme.MyAlbaEzTheme
+
+/*Colors Import*/
+import com.example.myalbaez.ui.theme.gray03
+import com.example.myalbaez.ui.theme.pink
 import java.time.format.TextStyle
 
 class MainActivity : ComponentActivity() {
@@ -183,9 +187,10 @@ fun BottomNavigationBar(
 //                    unselectedContentColor = Color.Gray,
                     icon = {
                         val iconColor = if (selected) {
-                            Color(0xFFF17070)
+                            pink
                         } else {
-                            Color.Gray
+                            /*Color.Gray*/
+                            gray03
                         }
                         Column(horizontalAlignment = CenterHorizontally) {
                             Icon(
@@ -224,7 +229,7 @@ private fun HomeScreen() {
                 fontSize = 36.sp,
                 fontFamily = FontFamily(Font(R.font.allertastencil)),
                 fontWeight = FontWeight(400),
-                color = Color(0xFFF17070),
+                color = pink,
 
                 textAlign = TextAlign.Center,
                 letterSpacing = 0.72.sp,
@@ -239,7 +244,7 @@ private fun HomeScreen() {
                 )
                 .width(342.dp)
                 .height(126.dp)
-                .background(color = Color(0xFFF17070), shape = RoundedCornerShape(size = 8.dp))
+                .background(color = pink, shape = RoundedCornerShape(size = 8.dp))
         )
         Column(
             verticalArrangement = Arrangement.spacedBy(20.dp)
@@ -323,7 +328,7 @@ private fun HomeScreen() {
                             painter = painterResource(id = R.drawable.scheduler),
                             contentDescription = "image description",
                             contentScale = ContentScale.Fit,
-                            colorFilter = ColorFilter.tint(Color(0xFFF17070))
+                            colorFilter = ColorFilter.tint(pink)
 
                         )
                         Text(
@@ -361,7 +366,7 @@ private fun HomeScreen() {
                             painter = painterResource(id = R.drawable.finder),
                             contentDescription = "image description",
                             contentScale = ContentScale.Fit,
-                            colorFilter = ColorFilter.tint(Color(0xFFF17070))
+                            colorFilter = ColorFilter.tint(pink)
                         )
                         Text(
                             text = "  긱잡 구하기  ",
@@ -406,7 +411,7 @@ private fun HomeScreen() {
                             painter = painterResource(id = R.drawable.cash),
                             contentDescription = "image description",
                             contentScale = ContentScale.Fit,
-                            colorFilter = ColorFilter.tint(Color(0xFFF17070))
+                            colorFilter = ColorFilter.tint(pink)
                         )
                         Text(
                             text = "  급여 관리   ",
@@ -442,7 +447,7 @@ private fun HomeScreen() {
                             painter = painterResource(id = R.drawable.profile),
                             contentDescription = "image description",
                             contentScale = ContentScale.Fit,
-                            colorFilter = ColorFilter.tint(Color(0xFFF17070))
+                            colorFilter = ColorFilter.tint(pink)
                         )
                         Text(
                             text = "  이력서 관리  ",

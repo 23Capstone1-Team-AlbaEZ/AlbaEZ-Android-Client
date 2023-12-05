@@ -1,0 +1,97 @@
+[
+  {
+    "workplaceName": "McDonalds Soongsil",
+    "scheduleList": [
+      {
+        "scheduleId": 1,
+        "memberID": 1,
+        "week": 0,
+        "day": "MON",
+        "startTime": "12:00",
+        "endTime": "15:00"
+      },
+      {
+        "scheduleId": 2,
+        "memberID": 1,
+        "week": 1,
+        "day": "MON",
+        "startTime": "16:00",
+        "endTime": "23:00"
+      },
+      {
+        "scheduleId": 3,
+        "memberID": 1,
+        "week": 2,
+        "day": "SAT",
+        "startTime": "18:00",
+        "endTime": "20:00"
+      },
+      {
+        "scheduleId": 4,
+        "memberID": 1,
+        "week": 3,
+        "day": "SAT",
+        "startTime": "20:00",
+        "endTime": "22:00"
+      }
+    ]
+  },
+  {
+    "workplaceName": "Domino Pizza Soongsil",
+    "scheduleList": [
+      {
+        "scheduleId": 1,
+        "memberID": 1,
+        "week": 0,
+        "day": "MON",
+        "startTime": "12:00",
+        "endTime": "15:00"
+      },
+      {
+        "scheduleId": 2,
+        "memberID": 1,
+        "week": 1,
+        "day": "MON",
+        "startTime": "06:00",
+        "endTime": "08:00"
+      },
+      {
+        "scheduleId": 3,
+        "memberID": 1,
+        "week": 2,
+        "day": "TUE",
+        "startTime": "16:00",
+        "endTime": "23:00"
+      }
+    ]
+  },
+  {
+    "workplaceName": "BBackDaBang Soongsil",
+    "scheduleList": [
+      {
+        "scheduleId": 1,
+        "memberID": 1,
+        "week": 0,
+        "day": "MON",
+        "startTime": "12:00",
+        "endTime": "15:00"
+      },
+      {
+        "scheduleId": 2,
+        "memberID": 1,
+        "week": 1,
+        "day": "MON",
+        "startTime": "06:00",
+        "endTime": "08:00"
+      },
+      {
+        "scheduleId": 3,
+        "memberID": 1,
+        "week": 2,
+        "day": "TUE",
+        "startTime": "16:00",
+        "endTime": "23:00"
+      }
+    ]
+  }
+]
