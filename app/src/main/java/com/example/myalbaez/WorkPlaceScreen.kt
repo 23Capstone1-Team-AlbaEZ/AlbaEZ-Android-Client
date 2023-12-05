@@ -29,7 +29,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -60,7 +60,7 @@ class WorkPlaceScreen : ComponentActivity() {
                     ) {
 
 
-                    schedule()
+                    Schedule()
                     Column(
                         verticalArrangement = Arrangement.Bottom,
                     ) {
@@ -75,7 +75,7 @@ class WorkPlaceScreen : ComponentActivity() {
 
 
 @Composable
-fun schedule(
+fun Schedule(
     viewModel: ScheduleViewModel = viewModel()
 ) {
     val wpStartTime = viewModel.workplace.startTime
@@ -311,20 +311,20 @@ fun schedule(
     }
 }
 object Variables {
-    val gray: Color = Color(0xFFE1E1E1)
-    val pink: Color = Color(0xFFFFE4E4)
-    val purple: Color = Color(0xFFECE0FF)
-    val blue: Color = Color(0xFFDBE7FF)
-    val orange: Color = Color(0x85FFCE84)
-    val green: Color = Color(0xFFD8EDDB)
-    val colors: Array<Color> = arrayOf(gray, pink, purple, blue, orange, green)
+    val calendar_gray: Color = Color(0xFFE1E1E1)
+    val calendar_pink: Color = Color(0xFFFFE4E4)
+    val calendar_purple: Color = Color(0xFFECE0FF)
+    val calendar_blue: Color = Color(0xFFDBE7FF)
+    val calendar_orange: Color = Color(0x85FFCE84)
+    val calendar_green: Color = Color(0xFFD8EDDB)
+    val calendar_colors: Array<Color> = arrayOf(calendar_gray, calendar_pink, calendar_purple, calendar_blue, calendar_orange, calendar_green)
     var nowColor = 0
 
     fun getColor(): Color {
         nowColor ++
         if(nowColor==6)
             nowColor = 0
-        return colors[nowColor]
+        return calendar_colors[nowColor]
     }
 }
 
@@ -380,7 +380,7 @@ class ScheduleViewModel : ViewModel() {
     val array1: Array<Worker> = arrayOf(worker1, worker2, worker3)
     val array2: Array<Workplace> = emptyArray()
 
-    var currentWorker: MutableState<Int> = mutableStateOf(0)
+    var currentWorker: MutableState<Int> = mutableIntStateOf(0)
 
     fun nextWorker(){
         currentWorker.value += 1
@@ -417,6 +417,6 @@ class ScheduleViewModelFactory() : ViewModelProvider.Factory {
 @Preview
 @Composable
 fun previewSchedule() {
-    schedule()
+    Schedule()
 }
 
