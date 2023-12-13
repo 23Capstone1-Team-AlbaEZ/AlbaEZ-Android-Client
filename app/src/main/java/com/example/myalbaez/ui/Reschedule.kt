@@ -125,15 +125,15 @@ private fun Btns(){
     Box(
         modifier = Modifier
             .size(130.dp)
-            .clickable {
-                // 취소 버튼이 클릭되었을 때 수행할 작업
-            },
     ) {
         Image(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(8.dp)
-                .size(130.dp),
+                .size(130.dp)
+                .clickable {
+                    // 취소 버튼이 클릭되었을 때 수행할 작업
+                },
             painter = painterResource(id = R.drawable.cancel_btn),
             contentDescription = null,
         )
@@ -165,7 +165,10 @@ private fun Btns(){
             modifier = Modifier
                 .fillMaxSize()
                 .padding(8.dp)
-                .size(130.dp),
+                .size(130.dp)
+                .clickable {
+                    // 취소 버튼이 클릭되었을 때 수행할 작업
+                },
             painter = painterResource(id = R.drawable.apply_btn),
             contentDescription = null
         )
