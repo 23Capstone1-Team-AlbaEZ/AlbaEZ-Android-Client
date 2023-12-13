@@ -72,6 +72,7 @@ import com.example.myalbaez.ui.theme.pink
 import com.example.myalbaez.ui.theme.pure_white
 import com.example.myalbaez.ui.theme.white
 import com.google.gson.Gson
+import org.intellij.lang.annotations.PrintFormat
 import java.io.InputStreamReader
 
 class MainActivity : ComponentActivity() {
@@ -515,3 +516,27 @@ private fun HomeScreen() {
     }
 }
 
+@Preview(showBackground = true)
+@Composable
+fun HomeScreenPreview() {
+    HomeScreen()
+}
+
+@Preview(showBackground = true)
+@Composable
+fun BottomNavigationBarPreview() {
+    // Assuming you have a navController to pass to the BottomNavigationBar
+    BottomNavigationBar(
+        items = listOf(
+            BottomNavItem(name = "홈", route = "home", icon = Icons.Default.Home),
+            BottomNavItem(
+                name = "알림",
+                route = "notifications",
+                icon = Icons.Default.Notifications
+            ),
+            BottomNavItem(name = "마이페이지", route = "mypage", icon = Icons.Default.Person)
+        ),
+        navController = rememberNavController(),
+        onItemClick = {}
+    )
+}
