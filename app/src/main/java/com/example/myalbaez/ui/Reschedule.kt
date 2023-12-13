@@ -62,7 +62,7 @@ class Reschedule : ComponentActivity() {
 @Composable
 private fun coWorkerCards(){
     // ResourcePainter를 사용하여 Painter 생성
-    val imagePainter: Painter = painterResource(id = R.drawable.profile)
+    val imagePainter: Painter = painterResource(id = R.drawable.alba_ez_icon)
     Column(
     ){
         coWorkerCardRow(imagePainter, "memberId1")
@@ -95,7 +95,7 @@ private fun coWorkerCardRow(image: Painter, memberId: String) {
 private fun coWorkerCardCol(image: Painter, memberId: String){
     var condition: Boolean = true
     val borderModifier = if (condition) {
-        Modifier.border(width = 4.dp, color = Color(0xFF000000), shape = RoundedCornerShape(size = 84.dp))
+        Modifier.border(width = 4.dp, color = Color.Transparent, shape = RoundedCornerShape(size = 84.dp))
     } else {
         Modifier.border(width = 4.dp, color = Color(0xFFF17070), shape = RoundedCornerShape(size = 84.dp))
     }
