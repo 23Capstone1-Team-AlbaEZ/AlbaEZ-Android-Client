@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -152,16 +153,16 @@ private fun coWorkerCardCol(image: Painter, memberId: String, condition: Boolean
 
 //맨 밑 버튼
 @Composable
-private fun Btns(){
+private fun Btns(
+){
     // 첫 번째 버튼 : 취소 버튼
     Box(
         modifier = Modifier
-            .size(130.dp)
+            .sizeIn(maxWidth = 130.dp, maxHeight = 53.dp)
     ) {
         Image(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(8.dp)
+                .padding(4.dp)
                 .size(130.dp)
                 .clickable {
                     // 취소 버튼이 클릭되었을 때 수행할 작업
@@ -171,7 +172,7 @@ private fun Btns(){
         )
         Text(
             modifier = Modifier
-                .offset ( x =41.dp, y = 57.dp),
+                .offset ( x =41.dp, y = 19.dp),
             text = "취소",
             style = TextStyle(
                 fontSize = 14.sp,
@@ -188,15 +189,14 @@ private fun Btns(){
     // 두 번째 버튼 : 신청 버튼
     Box(
         modifier = Modifier
-            .size(130.dp)
+            .sizeIn(maxWidth = 130.dp, maxHeight = 53.dp)
             .clickable {
                 // 신청 버튼이 클릭되었을 때 수행할 작업
             }
     ) {
         Image(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(8.dp)
+                .padding(4.dp)
                 .size(130.dp)
                 .clickable {
                     // 취소 버튼이 클릭되었을 때 수행할 작업
@@ -206,7 +206,7 @@ private fun Btns(){
         )
         Text(
             modifier = Modifier
-                .offset ( x =41.dp, y = 57.dp),
+                .offset ( x =41.dp, y = 19.dp),
             text = "신청",
             style = TextStyle(
                 fontSize = 14.sp,
@@ -284,7 +284,8 @@ private fun ApplyActivity(){
         // 추가된 버튼
         Row(
             modifier = Modifier
-                .align(Alignment.BottomCenter),
+                .align(Alignment.BottomCenter)
+                .offset(y = (-40).dp),
             horizontalArrangement = Arrangement.Center
         ) {
             Btns()
