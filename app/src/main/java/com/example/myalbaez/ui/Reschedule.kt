@@ -58,63 +58,95 @@ class Reschedule : ComponentActivity() {
     }
 }
 
-//사업장 멤버 선택 화면
+//사업장 멤버 선택 화면(코드가 좀 깁니다 양해바랍니다)
 @Composable
 private fun coWorkerCards(){
     // ResourcePainter를 사용하여 Painter 생성
-    val imagePainter: Painter = painterResource(id = R.drawable.alba_ez_icon)
+    val imageResourceIds1: List<Int> = listOf(
+        R.drawable.a,
+        R.drawable.b,
+        R.drawable.c
+    )
+    val imageResourceIds2: List<Int> = listOf(
+        R.drawable.d,
+        R.drawable.e,
+        R.drawable.f
+    )
+    val imageResourceIds3: List<Int> = listOf(
+        R.drawable.a,
+        R.drawable.b,
+        R.drawable.c
+    )
+    val imageResourceIds4: List<Int> = listOf(
+        R.drawable.d,
+        R.drawable.e,
+        R.drawable.f
+    )
+    val imagePainter1: List<Painter> = imageResourceIds1.map { painterResource(id = it) }
+    val imagePainter2: List<Painter> = imageResourceIds2.map { painterResource(id = it) }
+    val imagePainter3: List<Painter> = imageResourceIds3.map { painterResource(id = it) }
+    val imagePainter4: List<Painter> = imageResourceIds4.map { painterResource(id = it) }
+    val members1 : Array<String> = arrayOf("김희환", "김태현", "송승우")
+    val members2 : Array<String> = arrayOf("구교민", "옥채연", "손흥민")
+    val members3 : Array<String> = arrayOf("구자철", "안정환", "이승우")
+    val members4 : Array<String> = arrayOf("호날두", "웨인 루니", "비카리오")
+    val condition1: Boolean = true
+    val condition2: Boolean = false
     Column(
     ){
-        coWorkerCardRow(imagePainter, "memberId1")
+        coWorkerCardRow(imagePainter1, members1, condition1)
         Spacer(modifier = Modifier.height(32.dp)) // Row 사이의 간격을 설정합니다.
-        coWorkerCardRow(imagePainter, "memberId2")
+        coWorkerCardRow(imagePainter2, members2, condition2)
         Spacer(modifier = Modifier.height(32.dp)) // Row 사이의 간격을 설정합니다.
-        coWorkerCardRow(imagePainter, "memberId3")
+        coWorkerCardRow(imagePainter3, members3, condition1)
         Spacer(modifier = Modifier.height(32.dp)) // Row 사이의 간격을 설정합니다.
-        coWorkerCardRow(imagePainter, "memberId4")
+        coWorkerCardRow(imagePainter4, members4, condition1)
     }
 }
 
 //사업장 멤버 행 요소
 @Composable
-private fun coWorkerCardRow(image: Painter, memberId: String) {
+private fun coWorkerCardRow(image: List<Painter>, memberId: Array<String>, condition: Boolean) {
     Row(
         modifier = Modifier
             .background(Color.Transparent)
     ){
-        coWorkerCardCol(image, memberId)
+        coWorkerCardCol(image[0], memberId[0], condition)
         Spacer(modifier = Modifier.width(16.dp)) // Col 사이의 간격을 설정합니다.
-        coWorkerCardCol(image, memberId)
+        coWorkerCardCol(image[1], memberId[1], condition)
         Spacer(modifier = Modifier.width(16.dp))
-        coWorkerCardCol(image, memberId)
+        coWorkerCardCol(image[2], memberId[2], condition)
     }
 }
 
 //사업장 멤버 열 요소
 @Composable
-private fun coWorkerCardCol(image: Painter, memberId: String){
-    var condition: Boolean = true
+private fun coWorkerCardCol(image: Painter, memberId: String, condition: Boolean){
     val borderModifier = if (condition) {
-        Modifier.border(width = 4.dp, color = Color.Transparent, shape = RoundedCornerShape(size = 84.dp))
+        Modifier.border(width = 2.dp, color = Color.Transparent, shape = RoundedCornerShape(size = 64.dp))
     } else {
-        Modifier.border(width = 4.dp, color = Color(0xFFF17070), shape = RoundedCornerShape(size = 84.dp))
+        Modifier.border(width = 2.dp, color = Color(0xFFF17070), shape = RoundedCornerShape(size = 64.dp))
     }
     Column(
         modifier = Modifier
-            .then(borderModifier)
             .padding(4.dp)
-            .width(84.dp)
-            .height(84.dp),
+            .size(84.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Image(painter = image,
+        Image(
+            painter = image,
             modifier = Modifier
-                .size(84.dp)
-                .clip(CircleShape),
+                .size(64.dp)
+                .clip(CircleShape)
+                .then(borderModifier),
             contentDescription = null,
             contentScale = ContentScale.FillBounds
         )
+        Spacer(modifier = Modifier.height(0.dp))
+        Text(
+            text = memberId,
+            )
     }
 }
 
