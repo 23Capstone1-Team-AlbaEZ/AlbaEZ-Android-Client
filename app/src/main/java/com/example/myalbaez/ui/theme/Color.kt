@@ -19,6 +19,7 @@ val pure_white=Color(0xFFFFFFFF)
 /** light gray*/ val gray02 = Color(0xFF787878)
 /** dark gray for 네이게이션 icon */ val gray03 = Color(0xFF434343)
 /** Pager 인디케이터 gray */ val gray04 = Color(0xFFD9D9D9)
+/** 긱잡 채용 정보 */val gray05 = Color(0xFF5B5B5B)
 
 /** Card 그림자 */ val shadow=Color(0x40000000)
 

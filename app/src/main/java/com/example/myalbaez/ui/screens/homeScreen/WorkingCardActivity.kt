@@ -27,6 +27,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.myalbaez.ui.screens.homeScreen.dataClass.homeWorkCard
 import com.example.myalbaez.ui.theme.gray04
 import com.example.myalbaez.ui.theme.pink
 import com.example.myalbaez.ui.theme.shadow
@@ -65,10 +66,14 @@ class WorkingCardActivity : ComponentActivity() {
 fun WorkingAlbaCardPager(cardList: List<homeWorkCard>, pagerState: PagerState) {
 
     Column(
-        modifier = Modifier.background(white),
+        modifier = Modifier
+            .background(white)
+            .fillMaxWidth(),
+        verticalArrangement = Arrangement.Center
     ) {
         HorizontalPager(
             state = pagerState, // PagerState
+            contentPadding = PaddingValues(horizontal=24.dp)
         ) { index ->
             // 페이지 content
             MyCard(cardList[index])
@@ -102,7 +107,7 @@ fun WorkingAlbaCardPager(cardList: List<homeWorkCard>, pagerState: PagerState) {
                 Spacer(modifier = Modifier.width(2.dp))
             }
         }
-        LastCard()
+        /*LastCard()*/
     }
 }
 

@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -14,12 +15,17 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
@@ -28,6 +34,8 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -58,11 +66,23 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.myalbaez.ui.screens.gigjobposts.GigjobPostsActivity
+import com.example.myalbaez.ui.screens.gigjobposts.JobPostsSlider
+import com.example.myalbaez.ui.screens.gigjobposts.dataClass.gigjobPost
+import com.example.myalbaez.ui.screens.gigjobposts.gigjobPostCard
+import com.example.myalbaez.ui.screens.homeScreen.WorkingAlbaCardPager
+import com.example.myalbaez.ui.screens.homeScreen.dataClass.homeWorkCard
 import com.example.myalbaez.ui.theme.MyAlbaEzTheme
+import com.example.myalbaez.ui.theme.gray01
 
 /*Colors Import*/
 import com.example.myalbaez.ui.theme.gray03
 import com.example.myalbaez.ui.theme.pink
+import com.example.myalbaez.ui.theme.pure_white
+import com.example.myalbaez.ui.theme.shadow
+import com.example.myalbaez.ui.theme.white
+import com.google.gson.Gson
+import java.io.InputStreamReader
 import java.time.format.TextStyle
 
 class MainActivity : ComponentActivity() {
@@ -73,12 +93,17 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {navController = rememberNavController()
+        setContent {
+            navController = rememberNavController()
             Scaffold(
                 bottomBar = {
                     val items = listOf(
                         BottomNavItem(name = "홈", route = "home", icon = Icons.Default.Home),
-                        BottomNavItem(name = "알림", route = "notifications", icon = Icons.Default.Notifications),
+                        BottomNavItem(
+                            name = "알림",
+                            route = "notifications",
+                            icon = Icons.Default.Notifications
+                        ),
                         BottomNavItem(name = "마이페이지", route = "mypage", icon = Icons.Default.Person)
                     )
                     BottomNavigationBar(
@@ -143,7 +168,7 @@ fun Navigation(navController: NavHostController) {
 
 }
 
-data class BottomNavItem (
+data class BottomNavItem(
     val name: String,
     val route: String,
     val icon: ImageVector
@@ -212,47 +237,64 @@ fun BottomNavigationBar(
 }
 
 @RequiresApi(Build.VERSION_CODES.O)
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun HomeScreen() {
 
+    val gson = Gson()
+    // Access the assets in the preview using LocalContext
+    val homeCardJsonData = LocalContext.current.assets.open("homePrivateScheduleData.json")
+        .use { InputStreamReader(it).readText() }
+    val homeCardList: List<homeWorkCard> =
+        gson.fromJson(homeCardJsonData, Array<homeWorkCard>::class.java).toList()
+    val pagerState = rememberPagerState {
+        homeCardList.size
+    }
     val context = LocalContext.current
+
+    val gigJobJsonData = LocalContext.current.assets.open("gigjobPostsListData.json")
+        .use { InputStreamReader(it).readText() }
+    val jobPostCardList: List<gigjobPost> =
+        gson.fromJson(gigJobJsonData, Array<gigjobPost>::class.java).toList()
+
     Column(
-        modifier = Modifier
-            .background(color = Color(0xFFFFFAFA))
-            .padding(top = 20.dp,start = 35.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(30.dp)
+        modifier = Modifier.verticalScroll(rememberScrollState())
     ) {
+        Spacer(modifier = Modifier.height(33.dp))
         Text(
+            modifier = Modifier.fillMaxWidth(),
             text = "AlbaEZ",
             style = androidx.compose.ui.text.TextStyle(
                 fontSize = 36.sp,
                 fontFamily = FontFamily(Font(R.font.allertastencil)),
                 fontWeight = FontWeight(400),
                 color = pink,
-
                 textAlign = TextAlign.Center,
                 letterSpacing = 0.72.sp,
             )
         )
-        Box(
-            modifier = Modifier
-                .shadow(
-                    elevation = 4.dp,
-                    spotColor = Color(0x40000000),
-                    ambientColor = Color(0x40000000)
-                )
-                .width(342.dp)
-                .height(126.dp)
-                .background(color = pink, shape = RoundedCornerShape(size = 8.dp))
-        )
+        Spacer(modifier = Modifier.height(29.dp))
+
+        // Home working alba Pager and Indicator
         Column(
-            verticalArrangement = Arrangement.spacedBy(20.dp)
+            modifier = Modifier
+                .background(color = white)
+            /*.padding(top = 20.dp, start = 35.dp)*/,
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(30.dp)
+        ) {
+            WorkingAlbaCardPager(cardList = homeCardList, pagerState)
+            Spacer(modifier = Modifier.height(16.dp))
+        }
+
+        // Gigjob 추천 공고글
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
 
+            //안내문구 + 화살표
             Row(
-                modifier = Modifier
-                    .width(342.dp),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
@@ -261,208 +303,226 @@ private fun HomeScreen() {
                         fontSize = 14.sp,
                         fontFamily = FontFamily(Font(R.font.nanumgothic)),
                         fontWeight = FontWeight(400),
-                        color = Color(0xFF333333),
-
-                        )
+                        color = gray01,
+                    )
                 )
                 Image(
                     modifier = Modifier
                         .padding(0.dp)
                         .width(30.dp)
                         .height(13.dp)
-                        .clickable { },
+                        .clickable {
+                            navigateToAnotherActivity(context, GigjobPostsActivity::class.java)
+                        },
                     painter = painterResource(id = R.drawable.ic_action_name),
                     contentDescription = "image description",
-                    contentScale = ContentScale.None
+                    contentScale = ContentScale.None,
                 )
-
             }
-            Box(
-                modifier = Modifier
-                    .shadow(
-                        elevation = 4.dp,
-                        spotColor = Color(0x40000000),
-                        ambientColor = Color(0x40000000)
-                    )
-                    .width(342.dp)
-                    .height(224.dp)
-                    .background(color = Color(0xFFFFFFFF), shape = RoundedCornerShape(size = 8.dp))
-            )
-        }
-        Column(
-            modifier = Modifier
-                .width(342.dp)
-                .height(150.dp),
-            verticalArrangement = Arrangement.SpaceEvenly
-        ) {
-            Row(
-                modifier = Modifier
-                    .width(342.dp),
+            Spacer(modifier = Modifier.height(23.dp))
 
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceEvenly
+            // Gigjob Post Card
+            Column {
+                gigjobPostCard(card = jobPostCardList[0])
+                Spacer(modifier = Modifier.height(5.dp))
+                gigjobPostCard(card = jobPostCardList[1])
+            }
+            Spacer(modifier = Modifier.height(23.dp))
+
+            // 버튼 4개
+            Column(
+                modifier = Modifier.width(342.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(17.dp)
             ) {
-                Box(
-                    modifier = Modifier
-                        .width(155.dp)
-                        .height(67.dp)
-                        .background(
-                            color = Color(0xFFFFFFFF),
-                            shape = RoundedCornerShape(size = 10.dp)
-                        )
-                        .clickable {
-                            navigateToAnotherActivity(context, WorkPlaceScreen::class.java)
+                Row(
+                    modifier = Modifier.width(342.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    ElevatedCard(
+                        elevation = CardDefaults.cardElevation(
+                            defaultElevation = 2.dp
+                        ),
+                        colors = CardDefaults.cardColors(
+                            containerColor = pure_white,
+                        ),
+                        modifier = Modifier
+                            .size(
+                                width = 155.dp,
+                                height = 67.dp
+                            )
+                            .clickable {
+                                navigateToAnotherActivity(context, WorkPlaceScreen::class.java)
+                            }
+                    ) {
+                        Row(
+                            modifier = Modifier
+                                .width(155.dp)
+                                .height(67.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.SpaceEvenly
+                        ) {
+                            Image(
+                                modifier = Modifier
+                                    .width(30.dp)
+                                    .height(30.dp),
+                                painter = painterResource(id = R.drawable.scheduler),
+                                contentDescription = "image description",
+                                contentScale = ContentScale.Fit,
+                                colorFilter = ColorFilter.tint(pink)
+
+                            )
+                            Text(
+                                text = "알바 캘린더 보기",
+                                style = androidx.compose.ui.text.TextStyle(
+                                    fontSize = 12.sp,
+                                    fontFamily = FontFamily(Font(R.font.nanumgothic)),
+                                    fontWeight = FontWeight(700),
+                                    color = gray01,
+                                )
+                            )
                         }
-                ) {
-                    Row(
+                    }
+                    ElevatedCard(
+                        elevation = CardDefaults.cardElevation(
+                            defaultElevation = 2.dp
+                        ),
+                        colors = CardDefaults.cardColors(
+                            containerColor = pure_white,
+                        ),
                         modifier = Modifier
-                            .width(155.dp)
-                            .height(67.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceEvenly
-                    ) {
-                        Image(
-                            modifier = Modifier
-                                .width(30.dp)
-                                .height(30.dp),
-                            painter = painterResource(id = R.drawable.scheduler),
-                            contentDescription = "image description",
-                            contentScale = ContentScale.Fit,
-                            colorFilter = ColorFilter.tint(pink)
-
-                        )
-                        Text(
-                            text = "알바 캘린더 보기",
-                            style = androidx.compose.ui.text.TextStyle(
-                                fontSize = 12.sp,
-                                fontFamily = FontFamily(Font(R.font.nanumgothic)),
-                                fontWeight = FontWeight(700),
-                                color = Color(0xFF333333),
-
+                            .size(
+                                width = 155.dp,
+                                height = 67.dp
                             )
-                        )
+                            .clickable {
+                                navigateToAnotherActivity(context, GigjobPostsActivity::class.java)
+                            },
+                    ) {
+                        Row(
+                            modifier = Modifier
+                                .width(155.dp)
+                                .height(67.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.SpaceEvenly
+                        ) {
+                            Image(
+                                modifier = Modifier
+                                    .width(30.dp)
+                                    .height(30.dp),
+                                painter = painterResource(id = R.drawable.finder),
+                                contentDescription = "image description",
+                                contentScale = ContentScale.Fit,
+                                colorFilter = ColorFilter.tint(pink)
+                            )
+                            Text(
+                                text = "  긱잡 구하기  ",
+                                style = androidx.compose.ui.text.TextStyle(
+                                    fontSize = 12.sp,
+                                    fontFamily = FontFamily(Font(R.font.nanumgothic)),
+                                    fontWeight = FontWeight(700),
+                                    color = gray01,
+                                )
+                            )
+                        }
                     }
                 }
-                Box(
-                    modifier = Modifier
-                        .width(155.dp)
-                        .height(67.dp)
-                        .background(
-                            color = Color(0xFFFFFFFF),
-                            shape = RoundedCornerShape(size = 10.dp)
-                        )
+                Row(
+                    modifier = Modifier.width(342.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    Row(
+                    ElevatedCard(
+                        elevation = CardDefaults.cardElevation(
+                            defaultElevation = 2.dp
+                        ),
+                        colors = CardDefaults.cardColors(
+                            containerColor = pure_white,
+                        ),
                         modifier = Modifier
-                            .width(155.dp)
-                            .height(67.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceEvenly
-                    ) {
-                        Image(
-                            modifier = Modifier
-                                .width(30.dp)
-                                .height(30.dp),
-                            painter = painterResource(id = R.drawable.finder),
-                            contentDescription = "image description",
-                            contentScale = ContentScale.Fit,
-                            colorFilter = ColorFilter.tint(pink)
-                        )
-                        Text(
-                            text = "  긱잡 구하기  ",
-                            style = androidx.compose.ui.text.TextStyle(
-                                fontSize = 12.sp,
-                                fontFamily = FontFamily(Font(R.font.nanumgothic)),
-                                fontWeight = FontWeight(700),
-                                color = Color(0xFF333333),
+                            .size(
+                                width = 155.dp,
+                                height = 67.dp
                             )
-                        )
+                            /*.clickable {
+                                navigateToAnotherActivity(context, WorkPlaceScreen::class.java)
+                            }*/
+                    ) {
+                        Row(
+                            modifier = Modifier
+                                .width(155.dp)
+                                .height(67.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.SpaceEvenly
+                        ) {
+                            Image(
+                                modifier = Modifier
+                                    .width(30.dp)
+                                    .height(30.dp),
+                                painter = painterResource(id = R.drawable.cash),
+                                contentDescription = "image description",
+                                contentScale = ContentScale.Fit,
+                                colorFilter = ColorFilter.tint(pink)
+                            )
+                            Text(
+                                text = "  급여 관리   ",
+                                style = androidx.compose.ui.text.TextStyle(
+                                    fontSize = 12.sp,
+                                    fontFamily = FontFamily(Font(R.font.nanumgothic)),
+                                    fontWeight = FontWeight(700),
+                                    color = gray01,
+                                )
+                            )
+                        }
                     }
-                }
-            }
-            Row(
-                modifier = Modifier
-                    .width(342.dp),
-
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceEvenly
-            ) {
-                Box(
-                    modifier = Modifier
-                        .width(155.dp)
-                        .height(67.dp)
-                        .background(
-                            color = Color(0xFFFFFFFF),
-                            shape = RoundedCornerShape(size = 10.dp)
-                        )
-                ) {
-                    Row(
+                    ElevatedCard(
+                        elevation = CardDefaults.cardElevation(
+                            defaultElevation = 2.dp
+                        ),
+                        colors = CardDefaults.cardColors(
+                            containerColor = pure_white,
+                        ),
                         modifier = Modifier
-                            .width(155.dp)
-                            .height(67.dp)
-                            .padding(start = 13.dp, end = 23.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Image(
-                            modifier = Modifier
-                                .width(30.dp)
-                                .height(30.dp),
-                            painter = painterResource(id = R.drawable.cash),
-                            contentDescription = "image description",
-                            contentScale = ContentScale.Fit,
-                            colorFilter = ColorFilter.tint(pink)
-                        )
-                        Text(
-                            text = "  급여 관리   ",
-                            style = androidx.compose.ui.text.TextStyle(
-                                fontSize = 12.sp,
-                                fontFamily = FontFamily(Font(R.font.nanumgothic)),
-                                fontWeight = FontWeight(700),
-                                color = Color(0xFF333333),
+                            .size(
+                                width = 155.dp,
+                                height = 67.dp
                             )
-                        )
-                    }
-                }
-                Box(
-                    modifier = Modifier
-                        .width(155.dp)
-                        .height(67.dp)
-                        .background(
-                            color = Color(0xFFFFFFFF),
-                            shape = RoundedCornerShape(size = 10.dp)
-                        )
-                ) {
-                    Row(
-                        modifier = Modifier
-                            .width(155.dp)
-                            .height(67.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceEvenly
+                            /*.clickable {
+                                navigateToAnotherActivity(context, WorkPlaceScreen::class.java)
+                            }*/
                     ) {
-                        Image(
+                        Row(
                             modifier = Modifier
-                                .width(30.dp)
-                                .height(30.dp),
-                            painter = painterResource(id = R.drawable.profile),
-                            contentDescription = "image description",
-                            contentScale = ContentScale.Fit,
-                            colorFilter = ColorFilter.tint(pink)
-                        )
-                        Text(
-                            text = "  이력서 관리  ",
-                            style = androidx.compose.ui.text.TextStyle(
-                                fontSize = 12.sp,
-                                fontFamily = FontFamily(Font(R.font.nanumgothic)),
-                                fontWeight = FontWeight(700),
-                                color = Color(0xFF333333),
+                                .width(155.dp)
+                                .height(67.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.SpaceEvenly
+                        ) {
+                            Image(
+                                modifier = Modifier
+                                    .width(30.dp)
+                                    .height(30.dp),
+                                painter = painterResource(id = R.drawable.profile),
+                                contentDescription = "image description",
+                                contentScale = ContentScale.Fit,
+                                colorFilter = ColorFilter.tint(pink)
                             )
-                        )
+                            Text(
+                                text = "  이력서 관리  ",
+                                style = androidx.compose.ui.text.TextStyle(
+                                    fontSize = 12.sp,
+                                    fontFamily = FontFamily(Font(R.font.nanumgothic)),
+                                    fontWeight = FontWeight(700),
+                                    color = gray01,
+                                )
+                            )
+                        }
                     }
                 }
             }
-
         }
+        Spacer(modifier = Modifier.height(23.dp))
     }
 }
 
