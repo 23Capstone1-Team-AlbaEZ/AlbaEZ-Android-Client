@@ -103,7 +103,7 @@ fun NotificationMangerScreen(alarmList: List<notiDataClass>) {
 @Composable
 fun NofiManagerSlider(alarmList: List<notiDataClass>) {
     var scrollState by remember { mutableFloatStateOf(0f) }
-
+    var actionClick : (Boolean) -> Unit = {}
     LazyColumn(
         modifier = Modifier
             .fillMaxWidth()
@@ -119,7 +119,7 @@ fun NofiManagerSlider(alarmList: List<notiDataClass>) {
     ) {
         items(alarmList.size) {
             // Composable function for each card
-            NofiCard(alarm = alarmList[it])
+            NofiCard(alarm = alarmList[it], onActionClick = actionClick)
         }
     }
 }
