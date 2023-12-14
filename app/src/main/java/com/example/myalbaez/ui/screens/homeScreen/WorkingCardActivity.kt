@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
@@ -27,6 +28,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.myalbaez.WorkPlaceScreen
+import com.example.myalbaez.navigateToAnotherActivity
 import com.example.myalbaez.ui.screens.homeScreen.dataClass.homeWorkCard
 import com.example.myalbaez.ui.theme.gray04
 import com.example.myalbaez.ui.theme.pink
@@ -116,6 +119,7 @@ fun WorkingAlbaCardPager(cardList: List<homeWorkCard>, pagerState: PagerState) {
  * */
 @Composable
 fun MyCard(card: homeWorkCard) {
+    val context = LocalContext.current
     ElevatedCard(
         elevation = CardDefaults.cardElevation(
             defaultElevation = 4.dp
@@ -132,7 +136,10 @@ fun MyCard(card: homeWorkCard) {
             .size(
                 width = 340.dp,
                 height = 126.dp
-            ),
+            )
+            .clickable {
+                navigateToAnotherActivity(context, WorkPlaceScreen::class.java)
+            },
     ) {
         Column(
             modifier = Modifier
