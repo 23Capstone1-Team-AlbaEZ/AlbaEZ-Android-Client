@@ -64,6 +64,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-text-google-fonts:1.5.4")
     implementation(platform("androidx.compose:compose-bom:2023.03.00"))
     implementation(platform("androidx.compose:compose-bom:2023.03.00"))
+    implementation("androidx.privacysandbox.tools:tools-core:1.0.0-alpha06")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

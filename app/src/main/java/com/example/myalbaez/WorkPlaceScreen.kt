@@ -1,5 +1,6 @@
 package com.example.myalbaez
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -46,6 +47,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -60,6 +64,14 @@ class WorkPlaceScreen : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                WindowCompat.setDecorFitsSystemWindows(window, false)
+                val controller = WindowInsetsControllerCompat(window, window.decorView)
+                controller.hide(WindowInsetsCompat.Type.systemBars())
+                controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            } else {
+                window.decorView.systemUiVisibility = android.view.View.SYSTEM_UI_FLAG_FULLSCREEN
+            }
             MyAlbaEzTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
@@ -163,9 +175,9 @@ fun GSchedule(
         ) {
             Text(
                 modifier = Modifier
-                    .width(64.dp)
+                    .width(200.dp)
                     .height(30.dp),
-                text = "내 일정",
+                text = "맥도날드 숭실대",
                 fontSize = 20.sp,
                 fontFamily = FontFamily(Font(R.font.nanumgothic)),
                 fontWeight = FontWeight(700),

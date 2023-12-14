@@ -1,5 +1,6 @@
 package com.example.myalbaez.ui.screens.notification
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -33,6 +34,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import com.example.myalbaez.ui.screens.gigjobposts.GigJobPostsScreen
 import com.example.myalbaez.ui.screens.gigjobposts.JobPostsSlider
 import com.example.myalbaez.ui.screens.gigjobposts.dataClass.gigjobPost
@@ -54,6 +58,14 @@ class NotiMangerActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                WindowCompat.setDecorFitsSystemWindows(window, false)
+                val controller = WindowInsetsControllerCompat(window, window.decorView)
+                controller.hide(WindowInsetsCompat.Type.systemBars())
+                controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            } else {
+                window.decorView.systemUiVisibility = android.view.View.SYSTEM_UI_FLAG_FULLSCREEN
+            }
             val jsonData = assets.open("notificationDataManager.json")
                 .use { InputStreamReader(it).readText() }
 

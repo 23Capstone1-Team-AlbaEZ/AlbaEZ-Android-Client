@@ -2,6 +2,7 @@ package com.example.myalbaez.ui
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -22,6 +23,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import com.example.myalbaez.MainActivity
 import com.example.myalbaez.R
 import com.example.myalbaez.ui.theme.MyAlbaEzTheme
@@ -36,6 +40,14 @@ class InitActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         KakaoSdk.init(this, "1c0cbde69cd30713300b94d1f4420b83")
         setContent {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                WindowCompat.setDecorFitsSystemWindows(window, false)
+                val controller = WindowInsetsControllerCompat(window, window.decorView)
+                controller.hide(WindowInsetsCompat.Type.systemBars())
+                controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            } else {
+                window.decorView.systemUiVisibility = android.view.View.SYSTEM_UI_FLAG_FULLSCREEN
+            }
             MyAlbaEzTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(

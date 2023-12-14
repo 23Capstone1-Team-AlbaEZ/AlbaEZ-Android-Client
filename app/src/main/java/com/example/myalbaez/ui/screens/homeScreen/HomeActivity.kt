@@ -37,6 +37,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.myalbaez.MyScheduler
 import com.example.myalbaez.R
 import com.example.myalbaez.WorkPlaceScreen
 import com.example.myalbaez.navigateToAnotherActivity
@@ -172,7 +173,7 @@ fun HomeScreen() {
                                 height = 67.dp
                             )
                             .clickable {
-                                navigateToAnotherActivity(context, WorkPlaceScreen::class.java)
+                                navigateToAnotherActivity(context, MyScheduler::class.java)
                             }
                     ) {
                         Row(
