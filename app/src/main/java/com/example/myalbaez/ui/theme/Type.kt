@@ -55,3 +55,12 @@ val gigJobPostTypo = Typography(
     )
 )
 
+val notiAlarmTypo = Typography(
+    displayMedium = TextStyle(
+        fontFamily = FontFamily(Font(R.font.nanumgothic)),
+        fontWeight = FontWeight(400),
+        fontSize = 14.sp,
+        color = gray01 ,
+    )
+)
+

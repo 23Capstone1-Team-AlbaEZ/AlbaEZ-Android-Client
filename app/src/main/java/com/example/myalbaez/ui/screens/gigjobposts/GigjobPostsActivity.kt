@@ -126,17 +126,9 @@ fun gigjobPostCard(card: gigjobPost) {
 
         var _payFormColor: Color =
             when (card.payForm) {
-                "시급" -> {
-                    yellow
-                }
-
-                "일급" -> {
-                    purple
-                }
-
-                else -> {
-                    Color.Unspecified
-                }
+                "시급" -> {yellow}
+                "일급" -> {purple}
+                else -> {Color.Unspecified}
             }
 
         Column(

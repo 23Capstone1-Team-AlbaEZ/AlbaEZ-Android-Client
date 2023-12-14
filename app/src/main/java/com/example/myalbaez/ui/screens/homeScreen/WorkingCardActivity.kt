@@ -14,7 +14,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Build
+import androidx.compose.material.icons.filled.Send
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -34,6 +34,7 @@ import com.example.myalbaez.ui.screens.homeScreen.dataClass.homeWorkCard
 import com.example.myalbaez.ui.theme.gray04
 import com.example.myalbaez.ui.theme.pink
 import com.example.myalbaez.ui.theme.shadow
+import com.example.myalbaez.ui.theme.textFieldColor
 import com.example.myalbaez.ui.theme.white
 import com.google.gson.Gson
 import java.io.InputStreamReader
@@ -182,8 +183,12 @@ fun MyCard(card: homeWorkCard) {
 /**
  * 마지막 카드 (사업장 코드 입력, 사업장 생성)
  * */
+@OptIn(ExperimentalMaterial3Api::class)
+@Preview
 @Composable
 fun LastCard() {
+    val (workplaceCodeInput,setInput)=remember{ mutableStateOf("") }
+
     ElevatedCard(
         elevation = CardDefaults.cardElevation(
             defaultElevation = 4.dp
@@ -201,30 +206,44 @@ fun LastCard() {
     ) {
         Row(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp)
+                .fillMaxSize()
+                .padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
             // Left content
             Column(
                 modifier = Modifier
-                    .weight(1f)
-                    .padding(end = 8.dp)
+                    .padding(end = 8.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.SpaceEvenly
             ) {
-                Icon(
-                    imageVector = Icons.Default.Build,
-                    contentDescription = null,
-                    modifier = Modifier
-                        .size(48.dp)
-                        .clip(CircleShape)
-                        .background(MaterialTheme.colorScheme.primary)
-                        .padding(4.dp),
-                    tint = MaterialTheme.colorScheme.onPrimary
-                )
+                Row{
+                    TextField(
+                        value = workplaceCodeInput,
+                        onValueChange = setInput,
+                        modifier= Modifier
+                            .width(110.dp)
+                            .height(40.dp)
+                            .padding(4.dp),
+                    )
+                    Spacer(modifier = Modifier.width(2.dp))
+                    Icon(
+                        imageVector = Icons.Default.Send,
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(40.dp)
+                            .clip(RoundedCornerShape(size = 3.dp))
+                            .padding(4.dp)
+                            .background(textFieldColor)
+                        ,
+                        tint = pink
+                    )
+                }
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = "User",
-                    /*style = MaterialTheme.typography.subtitle1,*/
-                    fontWeight = FontWeight.Bold
+                    text = "사업장 코드 입력",
+                    fontWeight = FontWeight.Bold,
+                    color = white
                 )
             }
 
@@ -232,23 +251,23 @@ fun LastCard() {
             Column(
                 modifier = Modifier
                     .weight(1f)
-                    .padding(start = 8.dp)
+                    .padding(start = 8.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.SpaceEvenly
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
                     contentDescription = null,
                     modifier = Modifier
                         .size(48.dp)
-                        .clip(CircleShape)
-                        .background(MaterialTheme.colorScheme.secondary)
                         .padding(4.dp),
-                    tint = MaterialTheme.colorScheme.onSecondary
+                    tint = white
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = "Information",
-                    /*style = MaterialTheme.typography.subtitle1,*/
-                    fontWeight = FontWeight.Bold
+                    text = "사업장 생성",
+                    fontWeight = FontWeight.Bold,
+                    color = white
                 )
             }
         }

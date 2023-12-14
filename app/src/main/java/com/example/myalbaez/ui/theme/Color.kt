@@ -22,6 +22,7 @@ val pure_white=Color(0xFFFFFFFF)
 /** 긱잡 채용 정보 */val gray05 = Color(0xFF5B5B5B)
 
 /** Card 그림자 */ val shadow=Color(0x40000000)
+/**/ val textFieldColor=Color(0xFFe7e0ec)
 
 val purple = Color(0xFF8270F1) /*purple 일급 텍스트*/
 val yellow = Color(0xFFF1A93B) /*yellow 시급 텍스트*/
