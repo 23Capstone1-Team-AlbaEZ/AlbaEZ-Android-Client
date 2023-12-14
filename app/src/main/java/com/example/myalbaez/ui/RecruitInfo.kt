@@ -2,6 +2,7 @@ package com.example.myalbaez.ui
 
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -12,9 +13,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material3.AlertDialogDefaults.shape
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Text
@@ -22,6 +29,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -30,6 +38,10 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -52,16 +64,16 @@ private fun mainInfo(){
         modifier = Modifier
             .fillMaxSize()
     ){
-        Spacer(modifier = Modifier.height(23.dp))
+        Spacer(modifier = Modifier.height(40.dp))
         Column(
 
         ){
             Text(
                 modifier = Modifier
-                    .offset(x = 10.dp),
-                text = "[임시]계약직 채용",
+                    .offset(x = 15.dp),
+                text = "[임시 텍스트]계약직 채용",
                 style = androidx.compose.ui.text.TextStyle(
-                    fontSize = 20.sp,
+                    fontSize = 25.sp,
                     fontFamily = FontFamily(Font(R.font.nanumgothic)),
                     fontWeight = FontWeight(700),
                     color = gray01,
@@ -72,7 +84,7 @@ private fun mainInfo(){
                 Image(
                     painter = painterResource(id =R.drawable.a),
                     modifier = Modifier
-                        .offset(x = 20.dp)
+                        .offset(x = 22.dp)
                         .size(32.dp)
                         .clip(CircleShape),
                     contentDescription = null,
@@ -83,7 +95,7 @@ private fun mainInfo(){
                     modifier = Modifier
                         .offset(x = 10.dp)
                         .align(Alignment.CenterVertically),
-                    text = "알바이지",
+                    text = "[임시 텍스트]맥도날드 숭실대점",
                     style = androidx.compose.ui.text.TextStyle(
                         fontSize = 10.sp,
                         fontFamily = FontFamily(Font(R.font.nanumgothic)),
@@ -121,7 +133,7 @@ private fun mainInfo(){
                                 height = 67.dp
                             )
                             .clickable {
-                                navigateToAnotherActivity(context, WorkPlaceScreen::class.java)
+//                                navigateToAnotherActivity(context, WorkPlaceScreen::class.java)
                             }
                     ) {
                         Row(
@@ -135,21 +147,32 @@ private fun mainInfo(){
                                 modifier = Modifier
                                     .width(30.dp)
                                     .height(30.dp),
-                                painter = painterResource(id = R.drawable.scheduler),
+                                painter = painterResource(id = R.drawable.cash),
                                 contentDescription = "image description",
                                 contentScale = ContentScale.Fit,
                                 colorFilter = ColorFilter.tint(pink)
 
                             )
-                            Text(
-                                text = "시급      ",
-                                style = TextStyle(
-                                    fontSize = 12.sp,
-                                    fontFamily = FontFamily(Font(R.font.nanumgothic)),
-                                    fontWeight = FontWeight(700),
-                                    color = gray01,
+                            Column(){
+                                Text(
+                                    text = "시급      ",
+                                    style = TextStyle(
+                                        fontSize = 10.sp,
+                                        fontFamily = FontFamily(Font(R.font.nanumgothic)),
+                                        fontWeight = FontWeight(700),
+                                        color = gray01,
+                                    )
                                 )
-                            )
+                                Text(
+                                    text = "11,000원    ",
+                                    style = TextStyle(
+                                        fontSize = 14.sp,
+                                        fontFamily = FontFamily(Font(R.font.nanumgothic)),
+                                        fontWeight = FontWeight(700),
+                                        color = Color(0xFFF17070),
+                                    )
+                                )
+                            }
                         }
                     }
                     ElevatedCard(
@@ -165,7 +188,7 @@ private fun mainInfo(){
                                 height = 67.dp
                             )
                             .clickable {
-                                navigateToAnotherActivity(context, GigjobPostsActivity::class.java)
+//                                navigateToAnotherActivity(context, GigjobPostsActivity::class.java)
                             },
                     ) {
                         Row(
@@ -184,15 +207,26 @@ private fun mainInfo(){
                                 contentScale = ContentScale.Fit,
                                 colorFilter = ColorFilter.tint(pink)
                             )
-                            Text(
-                                text = "기간      ",
-                                style = TextStyle(
-                                    fontSize = 12.sp,
-                                    fontFamily = FontFamily(Font(R.font.nanumgothic)),
-                                    fontWeight = FontWeight(700),
-                                    color = gray01,
+                            Column(){
+                                Text(
+                                    text = "기간      ",
+                                    style = TextStyle(
+                                        fontSize = 10.sp,
+                                        fontFamily = FontFamily(Font(R.font.nanumgothic)),
+                                        fontWeight = FontWeight(700),
+                                        color = gray01,
+                                    )
                                 )
-                            )
+                                Text(
+                                    text = "하루 ~ 1주일",
+                                    style = TextStyle(
+                                        fontSize = 14.sp,
+                                        fontFamily = FontFamily(Font(R.font.nanumgothic)),
+                                        fontWeight = FontWeight(700),
+                                        color = gray01,
+                                    )
+                                )
+                            }
                         }
                     }
                 }
@@ -228,20 +262,31 @@ private fun mainInfo(){
                                 modifier = Modifier
                                     .width(30.dp)
                                     .height(30.dp),
-                                painter = painterResource(id = R.drawable.cash),
+                                painter = painterResource(id = R.drawable.scheduler),
                                 contentDescription = "image description",
                                 contentScale = ContentScale.Fit,
                                 colorFilter = ColorFilter.tint(pink)
                             )
-                            Text(
-                                text = "요일      ",
-                                style = TextStyle(
-                                    fontSize = 12.sp,
-                                    fontFamily = FontFamily(Font(R.font.nanumgothic)),
-                                    fontWeight = FontWeight(700),
-                                    color = gray01,
+                            Column(){
+                                Text(
+                                    text = "요일      ",
+                                    style = TextStyle(
+                                        fontSize = 10.sp,
+                                        fontFamily = FontFamily(Font(R.font.nanumgothic)),
+                                        fontWeight = FontWeight(700),
+                                        color = gray01,
+                                    )
                                 )
-                            )
+                                Text(
+                                    text = "월               ",
+                                    style = TextStyle(
+                                        fontSize = 14.sp,
+                                        fontFamily = FontFamily(Font(R.font.nanumgothic)),
+                                        fontWeight = FontWeight(700),
+                                        color = gray01,
+                                    )
+                                )
+                            }
                         }
                     }
                     ElevatedCard(
@@ -276,31 +321,246 @@ private fun mainInfo(){
                                 contentScale = ContentScale.Fit,
                                 colorFilter = ColorFilter.tint(pink)
                             )
-                            Text(
-                                text = "시간      ",
-                                style = TextStyle(
-                                    fontSize = 12.sp,
-                                    fontFamily = FontFamily(Font(R.font.nanumgothic)),
-                                    fontWeight = FontWeight(700),
-                                    color = gray01,
+                            Column(){
+                                Text(
+                                    text = "시간      ",
+                                    style = TextStyle(
+                                        fontSize = 10.sp,
+                                        fontFamily = FontFamily(Font(R.font.nanumgothic)),
+                                        fontWeight = FontWeight(700),
+                                        color = gray01,
+                                    )
                                 )
-                            )
+                                Text(
+                                    text = "12:00 ~ 15:00 ",
+                                    style = TextStyle(
+                                        fontSize = 11.sp,
+                                        fontFamily = FontFamily(Font(R.font.nanumgothic)),
+                                        fontWeight = FontWeight(700),
+                                        color = gray01,
+                                    )
+                                )
+                            }
                         }
                     }
                 }
+            }
+        }
+        Spacer(modifier = Modifier.height(32.dp))
+        workCondition()
+        Spacer(modifier = Modifier.height(32.dp))
+        detailInfo()
+        Spacer(modifier = Modifier.height(23.dp))
+        applyButton()
+    }
+}
+
+@Composable
+private fun workCondition(){
+    Column(
+        modifier = Modifier
+            .fillMaxWidth(),
+    ){
+        Column(
+            modifier = Modifier
+                .offset(x = 25.dp)
+        ){
+            Text(text = "근무조건",
+                style = TextStyle(
+                    fontSize = 20.sp,
+                    fontFamily = FontFamily(Font(R.font.nanumgothic)),
+                    fontWeight = FontWeight(1000),
+                    color = Color.Black,
+                ))
+            Spacer(modifier = Modifier.height(20.dp))
+            Row(){
+                Text(
+                    text = "급여      ",
+                    style = TextStyle(
+                        fontSize = 13.sp,
+                        fontFamily = FontFamily(Font(R.font.nanumgothic)),
+                        fontWeight = FontWeight(500),
+                        color = Color.Gray,
+                    )
+                )
+                Spacer(modifier = Modifier.width(20.dp))
+                Text(
+                    text = "시급 : ",
+                    style = TextStyle(
+                        fontSize = 13.sp,
+                        fontFamily = FontFamily(Font(R.font.nanumgothic)),
+                        fontWeight = FontWeight(700),
+                        color = gray01,
+                    )
+                )
+                Text(
+                    text = "11,000원      ",
+                    style = TextStyle(
+                        fontSize = 13.sp,
+                        fontFamily = FontFamily(Font(R.font.nanumgothic)),
+                        fontWeight = FontWeight(700),
+                        color = gray01,
+                    )
+                )
+            }
+            Spacer(modifier = Modifier.height(20.dp))
+            Row(){
+                Text(
+                    text = "근무기간",
+                    style = TextStyle(
+                        fontSize = 13.sp,
+                        fontFamily = FontFamily(Font(R.font.nanumgothic)),
+                        fontWeight = FontWeight(500),
+                        color = Color.Gray,
+                    )
+                )
+                Spacer(modifier = Modifier.width(17.dp))
+                Text(
+                    text = "2023-11-29 ~ 2023-11-30",
+                    style = TextStyle(
+                        fontSize = 13.sp,
+                        fontFamily = FontFamily(Font(R.font.nanumgothic)),
+                        fontWeight = FontWeight(700),
+                        color = gray01,
+                    )
+                )
+            }
+            Spacer(modifier = Modifier.height(20.dp))
+            Row(){
+                Text(
+                    text = "근무요일",
+                    style = TextStyle(
+                        fontSize = 13.sp,
+                        fontFamily = FontFamily(Font(R.font.nanumgothic)),
+                        fontWeight = FontWeight(500),
+                        color = Color.Gray,
+                    )
+                )
+                Spacer(modifier = Modifier.width(17.dp))
+                Text(
+                    text = "MON",
+                    style = TextStyle(
+                        fontSize = 13.sp,
+                        fontFamily = FontFamily(Font(R.font.nanumgothic)),
+                        fontWeight = FontWeight(700),
+                        color = gray01,
+                    )
+                )
+            }
+            Spacer(modifier = Modifier.height(20.dp))
+            Row(){
+                Text(
+                    text = "근무시간",
+                    style = TextStyle(
+                        fontSize = 13.sp,
+                        fontFamily = FontFamily(Font(R.font.nanumgothic)),
+                        fontWeight = FontWeight(500),
+                        color = Color.Gray,
+                    )
+                )
+                Spacer(modifier = Modifier.width(17.dp))
+                Text(
+                    text = "12:00 ~ 15:00",
+                    style = TextStyle(
+                        fontSize = 13.sp,
+                        fontFamily = FontFamily(Font(R.font.nanumgothic)),
+                        fontWeight = FontWeight(700),
+                        color = gray01,
+                    )
+                )
+            }
+            Spacer(modifier = Modifier.height(20.dp))
+            Row(){
+                Text(
+                    text = "업직종   ",
+                    style = TextStyle(
+                        fontSize = 13.sp,
+                        fontFamily = FontFamily(Font(R.font.nanumgothic)),
+                        fontWeight = FontWeight(500),
+                        color = Color.Gray,
+                    )
+                )
+                Spacer(modifier = Modifier.width(18.dp))
+                Text(
+                    text = "서빙알바",
+                    style = TextStyle(
+                        fontSize = 13.sp,
+                        fontFamily = FontFamily(Font(R.font.nanumgothic)),
+                        fontWeight = FontWeight(700),
+                        color = gray01,
+                    )
+                )
             }
         }
     }
 }
 
 @Composable
-private fun workCondition(){
-
+private fun detailInfo(){
+    Column(
+        modifier = Modifier
+            .fillMaxWidth(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ){
+        Column(
+            modifier = Modifier
+                .fillMaxWidth(),
+        ) {
+            Column(
+                modifier = Modifier
+                    .offset(x = 25.dp)
+            ) {
+                Text(
+                    text = "상세 정보",
+                    style = TextStyle(
+                        fontSize = 20.sp,
+                        fontFamily = FontFamily(Font(R.font.nanumgothic)),
+                        fontWeight = FontWeight(1000),
+                        color = Color.Black,
+                    )
+                )
+                Spacer(modifier = Modifier.height(20.dp))
+            }
+        }
+        Text("상세 정보 : 임시 텍스트")
+    }
 }
 
 @Composable
-private fun detailInfo(){
-
+private fun applyButton(){
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .offset(y = 150.dp),
+        verticalArrangement = Arrangement.Bottom,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ){
+        // 모서리가 둥근 직사각형 그리기
+        Box(
+            modifier = Modifier
+                .width(200.dp)
+                .height(30.dp)
+                .clip(RoundedCornerShape(6.dp))
+                .background(Color(0xFFF17070))
+        ) {
+            // 텍스트 그리기
+            BasicTextField(
+                value = TextFieldValue("지원하기"),
+                onValueChange = { /* Handle value change if needed */ },
+                textStyle = MaterialTheme.typography.body1.copy(
+                    color = Color.White,
+                    fontSize = 18.sp, // 글자 크기 조정
+                    textAlign = TextAlign.Center,
+                ),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .align(Alignment.Center),
+                visualTransformation = VisualTransformation.None,
+                keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Text)
+            )
+        }
+    }
 }
 
 @Preview
