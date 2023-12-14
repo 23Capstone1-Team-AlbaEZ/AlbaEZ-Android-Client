@@ -1,6 +1,8 @@
 package com.example.myalbaez.ui
 
+import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -20,6 +22,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material3.AlertDialogDefaults.shape
 import androidx.compose.material3.CardDefaults
@@ -54,7 +57,26 @@ import com.example.myalbaez.ui.theme.pink
 import com.example.myalbaez.ui.theme.pure_white
 
 class RecruitInfo : ComponentActivity() {
-
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            mainInfo()
+            /*{
+                "gigjobPostID": 1,
+                "scheduleAdjustID": 1,
+                "workplaceName": "맥도날드 숭실대점",
+                "address": "서울특별시 동작구 상도동 505-5",
+                "content": "서빙알바 급구",
+                "payForm": "시급",
+                "pay": "9,000원",
+                "day": "MON",
+                "startTime": "12:00",
+                "endTime": "15:00",
+                "postDate": "2023-11-29",
+                "expirationDate": "2023-12-31"
+            }*/
+        }
+    }
 }
 
 @Composable
@@ -62,7 +84,7 @@ private fun mainInfo(){
     val context = LocalContext.current
     Column(
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxSize(),
     ){
         Spacer(modifier = Modifier.height(40.dp))
         Column(
@@ -71,7 +93,7 @@ private fun mainInfo(){
             Text(
                 modifier = Modifier
                     .offset(x = 15.dp),
-                text = "[임시 텍스트]계약직 채용",
+                text = "계약직 채용 | 주방 알바 급구",
                 style = androidx.compose.ui.text.TextStyle(
                     fontSize = 25.sp,
                     fontFamily = FontFamily(Font(R.font.nanumgothic)),
@@ -95,7 +117,7 @@ private fun mainInfo(){
                     modifier = Modifier
                         .offset(x = 10.dp)
                         .align(Alignment.CenterVertically),
-                    text = "[임시 텍스트]맥도날드 숭실대점",
+                    text = "맥도날드 숭실대점",
                     style = androidx.compose.ui.text.TextStyle(
                         fontSize = 10.sp,
                         fontFamily = FontFamily(Font(R.font.nanumgothic)),
@@ -438,7 +460,7 @@ private fun workCondition(){
                 )
                 Spacer(modifier = Modifier.width(17.dp))
                 Text(
-                    text = "MON",
+                    text = "월요일",
                     style = TextStyle(
                         fontSize = 13.sp,
                         fontFamily = FontFamily(Font(R.font.nanumgothic)),
@@ -482,7 +504,29 @@ private fun workCondition(){
                 )
                 Spacer(modifier = Modifier.width(18.dp))
                 Text(
-                    text = "서빙알바",
+                    text = "주방,요리",
+                    style = TextStyle(
+                        fontSize = 13.sp,
+                        fontFamily = FontFamily(Font(R.font.nanumgothic)),
+                        fontWeight = FontWeight(700),
+                        color = gray01,
+                    )
+                )
+            }
+            Spacer(modifier = Modifier.height(20.dp))
+            Row(){
+                Text(
+                    text = "주소     ",
+                    style = TextStyle(
+                        fontSize = 13.sp,
+                        fontFamily = FontFamily(Font(R.font.nanumgothic)),
+                        fontWeight = FontWeight(500),
+                        color = Color.Gray,
+                    )
+                )
+                Spacer(modifier = Modifier.width(18.dp))
+                Text(
+                    text = "서울특별시 동작구 상도동 505-5",
                     style = TextStyle(
                         fontSize = 13.sp,
                         fontFamily = FontFamily(Font(R.font.nanumgothic)),
@@ -523,7 +567,9 @@ private fun detailInfo(){
                 Spacer(modifier = Modifier.height(20.dp))
             }
         }
-        Text("상세 정보 : 임시 텍스트")
+        Text("상세 정보")
+        Text("맥도날드 경력자 우대")
+        Text("시간 잘 지켜서 와주세요")
     }
 }
 
@@ -531,8 +577,7 @@ private fun detailInfo(){
 private fun applyButton(){
     Column(
         modifier = Modifier
-            .fillMaxWidth()
-            .offset(y = 150.dp),
+            .fillMaxWidth(),
         verticalArrangement = Arrangement.Bottom,
         horizontalAlignment = Alignment.CenterHorizontally,
     ){
@@ -563,7 +608,7 @@ private fun applyButton(){
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun mainInfoPreview(){
     mainInfo()
