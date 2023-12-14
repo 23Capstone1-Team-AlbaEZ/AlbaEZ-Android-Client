@@ -23,9 +23,15 @@ import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.AlertDialog
 import androidx.compose.material.Surface
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -165,6 +171,7 @@ private fun coWorkerCardCol(image: Painter, memberId: String, condition: Boolean
 @Composable
 private fun Btns(
 ){
+    var showDialog by remember { mutableStateOf(false) }
     // 첫 번째 버튼 : 취소 버튼
     Box(
         modifier = Modifier
@@ -201,7 +208,8 @@ private fun Btns(
         modifier = Modifier
             .sizeIn(maxWidth = 130.dp, maxHeight = 53.dp)
             .clickable {
-                // 신청 버튼이 클릭되었을 때 수행할 작업
+                showDialog = true
+
             }
     ) {
         Image(
@@ -226,6 +234,28 @@ private fun Btns(
                 textAlign = TextAlign.Center,
                 letterSpacing = 11.2.sp,
             )
+        )
+    }
+    if (showDialog) {
+        AlertDialog(
+            onDismissRequest = {
+                showDialog = false
+            },
+            title = {
+                Text("알림")
+            },
+            text = {
+                Text("신청되었습니다.")
+            },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        showDialog = false
+                    }
+                ) {
+                    Text("확인")
+                }
+            }
         )
     }
 }
@@ -261,7 +291,7 @@ private fun ApplyActivity(){
         Text(
             modifier = Modifier
                 .offset(x = 48.dp, y = 56.dp),
-            text = "2023년 10월 30일 월요일\n09:00 ~ 16:00",
+            text = "2023년 12월 11일 월요일\n09:00 ~ 14:00",
             style = TextStyle(
                 fontSize = 14.sp,
                 fontFamily = FontFamily(Font(R.font.nanumgothic)),
@@ -272,7 +302,7 @@ private fun ApplyActivity(){
         Text(
             modifier = Modifier
                 .offset(x = 48.dp, y = 119.dp),
-            text = "역할 : 주방",
+            text = "역할 : 홀",
             style = TextStyle(
                 fontSize = 14.sp,
                 fontFamily = FontFamily(Font(R.font.nanumgothic)),
