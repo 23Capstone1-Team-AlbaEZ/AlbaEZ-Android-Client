@@ -278,7 +278,7 @@ private fun mainInfo(){
                                     )
                                 )
                                 Text(
-                                    text = "월               ",
+                                    text = "월요일        ",
                                     style = TextStyle(
                                         fontSize = 14.sp,
                                         fontFamily = FontFamily(Font(R.font.nanumgothic)),
