@@ -1,0 +1,42 @@
+[
+  {
+    "alarmID": 1,
+    "userID": 1,
+    "workplaceID": 1,
+    "status": true,
+    "adjustDate": "2023-11-17",
+    "person": "OOO",
+    "startTime": "13:00",
+    "content": "근무자를 배정할 지 확인해주세요."
+  },
+  {
+    "alarmID": 2,
+    "userID": 1,
+    "workplaceID": 2,
+    "status": true,
+    "adjustDate": "2023-11-17",
+    "person": "OOO",
+    "startTime": "13:00",
+    "content": "근무자를 배정할 지 확인해주세요."
+  },
+  {
+    "alarmID": 3,
+    "userID": 1,
+    "workplaceID": 1,
+    "status": true,
+    "adjustDate": "2023-11-17",
+    "person": "OOO",
+    "startTime": "13:00",
+    "content": "근무자를 배정할 지 확인해주세요."
+  },
+  {
+    "alarmID": 4,
+    "userID": 1,
+    "workplaceID": 1,
+    "status": true,
+    "adjustDate": "2023-11-17",
+    "person": "OOO",
+    "startTime": "13:00",
+    "content": "근무자를 배정할 지 확인해주세요."
+  }
+]
