@@ -6,38 +6,31 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.view.View
-import android.view.WindowInsetsController
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Notifications
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.privacysandbox.tools.core.model.Type
-import com.example.myalbaez.ui.BottomNavItem
 import com.example.myalbaez.ui.BottomNavigationBar
 import com.example.myalbaez.ui.items
-import com.example.myalbaez.ui.screens.homeScreen.HomeActivity
 import com.example.myalbaez.ui.screens.homeScreen.HomeScreen
-import com.example.myalbaez.ui.screens.notification.NotificationScreen
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import com.example.myalbaez.ui.screens.notification.NotiMangerActivity
+import com.example.myalbaez.ui.screens.notification.NotificationDataLoader
+import com.example.myalbaez.ui.screens.notification.NotificationMangerScreen
+import com.example.myalbaez.ui.screens.notification.NotificationScreen
+import com.example.myalbaez.ui.screens.notification.dataClass.notiDataClass
 
 /*Colors Import*/
 
@@ -67,6 +60,7 @@ private fun onHomeButtonPressed(navController: NavHostController) {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AlbaezApp(modifier:Modifier=Modifier){
     val navController = rememberNavController()
@@ -91,13 +85,20 @@ fun AlbaezApp(modifier:Modifier=Modifier){
 @Composable
 fun Navigation(navController: NavHostController) {
     val context=LocalContext.current
+    val notificationDataLoader = NotificationDataLoader(context)
+    val alarmList: List<notiDataClass> = notificationDataLoader.loadNotificationData()
+    val malarmList: List<notiDataClass> = notificationDataLoader.loadManagerNotificationData()
 
     NavHost(navController = navController, startDestination = "home") {
         composable("home") {
             HomeScreen()
         }
         composable("notifications") {
-            /*NotificationScreen()*/
+            val manager = true
+            if(manager)
+                NotificationMangerScreen(malarmList)
+            else
+                NotificationScreen(alarmList)
         }
         composable("mypage") {
             //MypageScreen()

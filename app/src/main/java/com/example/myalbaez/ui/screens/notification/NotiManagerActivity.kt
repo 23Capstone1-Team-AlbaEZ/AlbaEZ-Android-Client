@@ -9,7 +9,6 @@ import androidx.compose.foundation.gestures.detectTransformGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -26,21 +25,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import com.example.myalbaez.ui.screens.gigjobposts.GigJobPostsScreen
-import com.example.myalbaez.ui.screens.gigjobposts.JobPostsSlider
-import com.example.myalbaez.ui.screens.gigjobposts.dataClass.gigjobPost
-import com.example.myalbaez.ui.screens.gigjobposts.gigjobPostCard
 import com.example.myalbaez.ui.screens.notification.dataClass.notiDataClass
 import com.example.myalbaez.ui.theme.gigJobPostTypo
 import com.example.myalbaez.ui.theme.gray02
@@ -54,7 +47,7 @@ import com.example.myalbaez.ui.theme.yellow
 import com.google.gson.Gson
 import java.io.InputStreamReader
 
-class NotiMangerActivity : ComponentActivity() {
+class NotiMangerActivity(alarmList: List<notiDataClass>) : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {

@@ -180,7 +180,7 @@ fun GSchedule(
                 text = "맥도날드 숭실대",
                 fontSize = 20.sp,
                 fontFamily = FontFamily(Font(R.font.nanumgothic)),
-                fontWeight = FontWeight(700),
+                fontWeight = FontWeight(1000),
                 color = Color(0xFF5B5B5B),
                 letterSpacing = 0.4.sp,
             )
@@ -379,7 +379,7 @@ fun GSchedule(
                                     text = it,
                                     fontSize = 6.sp,
                                     fontFamily = FontFamily(Font(R.font.nanumgothic)),
-                                    fontWeight = FontWeight(400),
+                                    fontWeight = FontWeight(700),
                                     modifier = Modifier
                                         .fillMaxWidth(),
                                     color = Color.Black,
