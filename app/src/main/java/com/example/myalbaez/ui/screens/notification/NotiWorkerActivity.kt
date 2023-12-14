@@ -9,12 +9,15 @@ import androidx.compose.foundation.gestures.detectTransformGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Text
@@ -26,9 +29,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
@@ -36,8 +42,12 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.example.myalbaez.ui.screens.notification.dataClass.notiDataClass
 import com.example.myalbaez.ui.theme.gigJobPostTypo
+import com.example.myalbaez.ui.theme.gray01
+import com.example.myalbaez.ui.theme.gray02
 import com.example.myalbaez.ui.theme.gray05
+import com.example.myalbaez.ui.theme.light_pink
 import com.example.myalbaez.ui.theme.notiAlarmTypo
+import com.example.myalbaez.ui.theme.pink
 import com.example.myalbaez.ui.theme.pure_white
 import com.example.myalbaez.ui.theme.purple
 import com.example.myalbaez.ui.theme.white
@@ -161,6 +171,41 @@ fun NofiCard(alarm: notiDataClass) {
                 style = notiAlarmTypo.displayMedium,
             )
             Spacer(modifier = Modifier.height(10.dp))
+            Row(
+                modifier=Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ){
+                Button(
+                    onClick ={
+                        //수락완료 팝업 후 종료
+                    },
+                    colors= ButtonDefaults.buttonColors(containerColor = light_pink,contentColor = pink)
+                ) {
+                    Text(text="수락하기", fontWeight = FontWeight.Bold)
+                }
+                Button(
+                    onClick ={
+                        //거절 완료 팝업 후 종료
+                    },
+                    colors= ButtonDefaults.buttonColors(containerColor = gray02,contentColor = gray01)
+                ) {
+                    Text(text="거절하기",fontWeight = FontWeight.Bold)
+                }
+            }
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun NotificationScreenPreview(){
+
+    val jsonData = LocalContext.current.assets.open("notificationDataWorker.json")
+        .use { InputStreamReader(it).readText() }
+
+    val gson = Gson()
+    val alarmList: List<notiDataClass> =
+        gson.fromJson(jsonData, Array<notiDataClass>::class.java).toList()
+
+    NotificationScreen(alarmList = alarmList)
 }
