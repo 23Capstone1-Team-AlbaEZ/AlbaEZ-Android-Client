@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,11 +14,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyAlbaEz"
         tools:targetApi="31">
-        <activity android:name=".ui.screens.homeScreen.WorkingCardActivity"
+        <activity
+            android:name=".ui.Reschedule"
+            android:exported="false"
+            android:label="@string/title_activity_rescheduler"
+            android:theme="@style/Theme.MyAlbaEz" />
+        <activity
+            android:name=".ui.screens.homeScreen.WorkingCardActivity"
             android:exported="false"
             android:label=""
-            android:theme="@style/Theme.MyAlbaEz"
-            />
+            android:theme="@style/Theme.MyAlbaEz" />
         <activity
             android:name=".WorkPlaceScreen"
             android:exported="false"
@@ -24,13 +31,8 @@
             android:theme="@style/Theme.MyAlbaEz" />
         <activity
             android:name=".InitActivity"
-            android:label="@string/app_name"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false"
+            android:label="@string/app_name"></activity>
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -38,12 +40,20 @@
             android:theme="@style/Theme.MyAlbaEz">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.screens.gigjobposts.GigjobPostsActivity"
+        <activity
+            android:name=".ui.screens.gigjobposts.GigjobPostsActivity"
             android:exported="false"
-            android:theme="@style/Theme.MyAlbaEz">
-        </activity>
+            android:theme="@style/Theme.MyAlbaEz"></activity>
+        <activity
+            android:name=".MyScheduler"
+            android:exported="false"
+            android:label="My Scheduler"
+            android:theme="@style/Theme.MyAlbaEz"></activity>
     </application>
+
 </manifest>
+

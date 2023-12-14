@@ -1,10 +1,11 @@
 package com.example.myalbaez
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -24,7 +25,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -49,14 +49,14 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.myalbaez.ui.Reschedule
+import com.example.myalbaez.ui.screens.gigjobposts.GigjobPostsActivity
 import com.example.myalbaez.ui.theme.MyAlbaEzTheme
-import scheduleData.GScheduleViewModel
-import scheduleData.wpTime
-import scheduleData.GSdata
+import scheduleData.PSdata
 import scheduleData.ScheduleViewModel
 
-class WorkPlaceScreen : ComponentActivity() {
-    @OptIn(ExperimentalMaterial3Api::class)
+class MyScheduler : ComponentActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -64,78 +64,25 @@ class WorkPlaceScreen : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background,
+                    color = MaterialTheme.colorScheme.background
+                ) {
 
-                    ) {
 
-
-                    //schedule()
+                    Schedule()
                     Column(
                         verticalArrangement = Arrangement.Bottom,
                     ) {
-                        GSchedule()
+                        MyCard()
                     }
                 }
-
             }
         }
     }
 }
 
 @Composable
-fun Announcement() {
-    Column(
-        verticalArrangement = Arrangement.spacedBy(10.dp, Alignment.Top),
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        Row(
-            modifier = Modifier
-                .width(328.dp)
-                .height(23.dp),
-            horizontalArrangement = Arrangement.spacedBy(5.dp, Alignment.CenterHorizontally),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            // Child views.
-            Image(
-                modifier = Modifier
-                    .width(15.dp)
-                    .height(23.dp),
-                painter = painterResource(id = R.drawable.prev2),
-                contentDescription = "image description",
-                contentScale = ContentScale.Fit
-            )
-            Text(
-                modifier = Modifier
-                    .width(53.dp)
-                    .height(12.5.dp),
-                text = "공지사항",
-                style = TextStyle(
-                    fontSize = 12.sp,
-                    fontFamily = FontFamily(Font(R.font.nanumgothic)),
-                    fontWeight = FontWeight(800),
-                    color = Color(0xFF000000),
-                    textAlign = TextAlign.Center,
-                )
-            )
-            Text(
-                modifier = Modifier
-                    .width(250.dp)
-                    .height(13.dp),
-                text = "이번주 일요일 회식있어요 (필참)",
-                style = TextStyle(
-                    fontSize = 12.sp,
-                    fontFamily = FontFamily(Font(R.font.nanumgothic)),
-                    fontWeight = FontWeight(400),
-                    color = Color(0xFF696969),
-                )
-            )
-        }
-    }
-}
-
-@Composable
-fun GSchedule(
-    viewModel: GScheduleViewModel = viewModel()
+fun Schedule(
+    viewModel: ScheduleViewModel = viewModel()
 ) {
     val schedule = viewModel
 
@@ -153,7 +100,6 @@ fun GSchedule(
             .height(2000.dp)
             .verticalScroll(scrollState)
             .background(color = Color(0xFFFFFAFA))
-            .padding(start = 15.dp)
     ) {
         Column(
             modifier = Modifier
@@ -172,7 +118,6 @@ fun GSchedule(
                 color = Color(0xFF5B5B5B),
                 letterSpacing = 0.4.sp,
             )
-            Announcement()
             Row(
                 modifier = Modifier
                     .width(296.dp)
@@ -255,13 +200,13 @@ fun GSchedule(
                 Column(
                     modifier = Modifier
                         .width(38.dp)
-                        .height(((13 + 1) * 36).dp)
+                        .height((14 * 36).dp)
                         .padding(start = 0.dp, top = 0.dp, end = 5.dp, bottom = 0.dp),
                     //verticalArrangement = Arrangement.SpaceAround,
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     if (true) {
-                        for (i: Int in 9..22!!) {
+                        for (i: Int in 9..22) {
                             Text(
                                 modifier = Modifier
                                     .width(266.dp)
@@ -280,14 +225,14 @@ fun GSchedule(
 
                 Column(
                     modifier = Modifier
-                        .border(width = 1.dp, color = Color.Transparent)
+                        .border(width = 1.dp, color = Color(0xFF333333))
                         .width(266.dp)
-                        .height(((13 + 1) * 36).dp),
+                        .height((14 * 36).dp),
                     verticalArrangement = Arrangement.SpaceEvenly,
                 ) {
                     if (true) {
                         if (true) {
-                            for (i: Int in 9..22!!) {
+                            for (i: Int in 9..22) {
                                 Row(
                                     modifier = Modifier
                                         .width(266.dp)
@@ -298,13 +243,13 @@ fun GSchedule(
                                         Divider(
                                             modifier = Modifier
                                                 .width(1.dp)
-                                                .fillMaxHeight(), color = Color.Transparent
+                                                .fillMaxHeight(), color = Color.Black
                                         )
                                 }
                                 Divider(
                                     modifier = Modifier
                                         .height(1.dp),
-                                    color = Color.Transparent
+                                    color = Color.Black
                                 )
                             }
                         }
@@ -319,7 +264,7 @@ fun GSchedule(
                             Divider(
                                 modifier = Modifier
                                     .width(1.dp)
-                                    .fillMaxHeight(), color = Color.Transparent
+                                    .fillMaxHeight(), color = Color.Black
                             )
 
                     }
@@ -332,78 +277,136 @@ fun GSchedule(
                     //.padding(start = (69+wDate!!*38).dp, top = (101 + (wStartTime!!.minus(wpStartTime!!)) * 36).dp)
                     .padding(
                         start = (69 + i.date!! * 38).dp,
-                        top = (101 + (i.startTime!! - 9) * 36 + 23).dp
+                        //top = (101+(i.endTime!!.minus(i.startTime!!)) * 36).dp
+                        top = (101 + (i.startTime!!-9) * 36).dp
                     )
             ) {
                 Box(modifier = Modifier
                     .width(36.dp)
                     //.height((((wEndTime!!.minus(wStartTime!!)) * 36)).dp)
                     .height((((i.endTime!!.minus(i.startTime!!)) * 36)).dp)
-                    .background(
-                        color = Color.Transparent,
-                        shape = RoundedCornerShape(size = 2.dp)
-                    )
-                    .padding(start = 1.dp, top = 1.dp, end = 1.dp, bottom = 1.dp)
+                    .background(color = Color(0xFFFFE4E4))
                     .clickable {
+                        viewModel.setsched(i)
                     }
                 ) {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .background(
-                                color = Variables.getColor(),
-                                shape = RoundedCornerShape(size = 3.dp)
-                            )
-                            .align(Alignment.Center)
-                    ) {
-                        Column(
+                    if (viewModel.getsched() == i)
+                        Box(
                             modifier = Modifier
-                                .fillMaxSize(),
-                            verticalArrangement = Arrangement.SpaceEvenly
-
-                        ) {
-                            viewModel.countRoles()?.let {
-                                Text(
-                                    text = it,
-                                    fontSize = 6.sp,
-                                    fontFamily = FontFamily(Font(R.font.nanumgothic)),
-                                    fontWeight = FontWeight(400),
-                                    modifier = Modifier
-                                        .fillMaxWidth(),
-                                    color = Color.Black,
-                                    textAlign = TextAlign.Center
-
-                                )
-
-                        }
-                    }
+                                .fillMaxSize()
+                                .border(width = 2.dp, Color.Red)
+                                .background(color = Color.Transparent)
+                        )
                 }
             }
-    }
 
-}
-}
-
-object Variables {
-    val gray: Color = Color(0xFFE1E1E1)
-    val pink: Color = Color(0xFFFFE4E4)
-    val purple: Color = Color(0xFFECE0FF)
-    val blue: Color = Color(0xFFDBE7FF)
-    val orange: Color = Color(0x85FFCE84)
-    val green: Color = Color(0xFFD8EDDB)
-    val colors: Array<Color> = arrayOf(gray, pink, purple, blue, orange, green)
-    var nowColor = 0
-
-    fun getColor(): Color {
-        nowColor++
-        if (nowColor == 6)
-            nowColor = 0
-        return colors[nowColor]
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
+@Composable
+fun MyCard(
+) {
+    val viewModel = viewModel<ScheduleViewModel>()
+    Column(
+        verticalArrangement = Arrangement.Top
+    ) {
+        viewModel.setWeek()
+        val context = LocalContext.current
+        Box(
+            modifier = Modifier
+                .background(color = Color.White)
+                .fillMaxWidth()
+                .height(250.dp),
 
+            ) {
+            Column {
+                Text(text = "\n")
+                Text(
+                    text = "${viewModel.dateList[viewModel.scheds[viewModel.currentWorker.value].date!!]}",
+                    modifier = Modifier
+                        .padding(start = 60.dp)
+                )
+                Text(
+                    text = "${viewModel.scheds[viewModel.currentWorker.value].startTime.toString()} ~ ${viewModel.scheds[viewModel.currentWorker.value].endTime.toString()}",
+                    modifier = Modifier
+                        .padding(start = 60.dp)
+                )
+                Text(text = "\n")
+                Text(
+                    text = "역할 : ${viewModel.scheds[viewModel.currentWorker.value].role.toString()}",
+                    modifier = Modifier
+                        .padding(start = 60.dp)
+                )
+                Text(text = "\n")
 
+                Row(
+                    modifier = Modifier
+                        .background(color = Color.White)
+                        .fillMaxWidth()
+                        .height(250.dp),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Image(
+                        modifier = Modifier
+                            .width(37.dp)
+                            .height(40.dp)
+                            .background(color = Color.Transparent)
+                            .clickable {
+                                viewModel.prevWorker()
+                            },
+                        painter = painterResource(id = R.drawable.prev),
+                        contentDescription = "image description",
+                        contentScale = ContentScale.None,
+                        colorFilter = ColorFilter.tint(Color(0xFFF17070))
+                    )
+                    Text(
+                        text = "일정 조정 신청하기",
+                        fontWeight = FontWeight(1000),
+                        modifier = Modifier
+                            .border(width = 1.dp, color = Color(0xFFF17070),
+                                shape = RoundedCornerShape(size = 10.dp)
+                            )
+                            .clickable {
+                                navigateToAnotherActivity(context, Reschedule::class.java)
+                            }
+                            .padding(top = 10.dp)
+                            .width(264.dp)
+                            .height(34.dp)
+                            .background(color = Color(0xFFFFFFFF)),
+                        style = TextStyle(
+                            fontSize = 14.sp,
+                            fontFamily = FontFamily(Font(R.font.nanumgothic)),
+                            fontWeight = FontWeight(800),
+                            color = Color(0xFFF17070),
+
+                            textAlign = TextAlign.Center,
+                        )
+                    )
+
+                    Image(
+                        modifier = Modifier
+                            .width(37.dp)
+                            .height(40.dp)
+                            .background(color = Color.Transparent)
+                            .clickable {
+                                viewModel.nextWorker()
+                            },
+                        painter = painterResource(id = R.drawable.prev2),
+                        contentDescription = "image description",
+                        contentScale = ContentScale.None,
+                        colorFilter = ColorFilter.tint(Color(0xFFF17070))
+                    )
+
+                }
+            }
+
+        }
+
+    }
+
+}
 
 
 

@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">My AlbaEz</string>
     <string name="title_activity_work_place_screen">WorkPlaceScreen</string>
+    <string name="title_activity_rescheduler">Rescheduler</string>
+    <string name="title_activity_adjust">Adjust</string>
+    <string name="title_activity_adjustor">Adjustor</string>
 </resources>
