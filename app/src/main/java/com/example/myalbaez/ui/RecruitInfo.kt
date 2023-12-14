@@ -132,9 +132,9 @@ private fun mainInfo(){
                                 width = 155.dp,
                                 height = 67.dp
                             )
-                            .clickable {
+//                            .clickable {
 //                                navigateToAnotherActivity(context, WorkPlaceScreen::class.java)
-                            }
+//                            }
                     ) {
                         Row(
                             modifier = Modifier
@@ -187,9 +187,9 @@ private fun mainInfo(){
                                 width = 155.dp,
                                 height = 67.dp
                             )
-                            .clickable {
+//                            .clickable {
 //                                navigateToAnotherActivity(context, GigjobPostsActivity::class.java)
-                            },
+//                            },
                     ) {
                         Row(
                             modifier = Modifier
@@ -534,7 +534,7 @@ private fun applyButton(){
             .fillMaxWidth()
             .offset(y = 150.dp),
         verticalArrangement = Arrangement.Bottom,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ){
         // 모서리가 둥근 직사각형 그리기
         Box(
@@ -543,21 +543,21 @@ private fun applyButton(){
                 .height(30.dp)
                 .clip(RoundedCornerShape(6.dp))
                 .background(Color(0xFFF17070))
+                .clickable {}
         ) {
-            // 텍스트 그리기
-            BasicTextField(
-                value = TextFieldValue("지원하기"),
-                onValueChange = { /* Handle value change if needed */ },
-                textStyle = MaterialTheme.typography.body1.copy(
+            Text(
+                text = "지원하기",
+                style = TextStyle(
+                    fontSize = 18.sp,
+                    fontFamily = FontFamily(Font(R.font.nanumgothic)),
+                    fontWeight = FontWeight(500),
                     color = Color.White,
-                    fontSize = 18.sp, // 글자 크기 조정
                     textAlign = TextAlign.Center,
                 ),
                 modifier = Modifier
                     .fillMaxSize()
-                    .align(Alignment.Center),
-                visualTransformation = VisualTransformation.None,
-                keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Text)
+                    .align(Alignment.Center)
+                    .offset( y= 4.dp)
             )
         }
     }
