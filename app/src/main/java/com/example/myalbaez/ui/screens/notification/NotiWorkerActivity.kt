@@ -58,7 +58,6 @@ class NotiActivity : ComponentActivity() {
             }
             val jsonData = assets.open("notificationDataWorker.json")
                 .use { InputStreamReader(it).readText() }
-
             val gson = Gson()
             val alarmList: List<notiDataClass> =
                 gson.fromJson(jsonData, Array<notiDataClass>::class.java).toList()
@@ -67,6 +66,7 @@ class NotiActivity : ComponentActivity() {
         }
     }
 }
+
 
 
 @Composable
