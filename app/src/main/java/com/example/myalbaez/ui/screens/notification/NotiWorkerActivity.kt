@@ -24,6 +24,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -95,12 +96,12 @@ fun NotificationScreen(alarmList: List<notiDataClass>) {
             Spacer(modifier = Modifier.height(31.dp))
             Text(
                 buildAnnotatedString {
-                    withStyle(
-                        style = SpanStyle(color = purple)
-                    ) {
-                        append(alarmList.size.toString())
-                    }
-                    append("건의 새로운 알람이 존재합니다. 확인해보세요")
+//                    withStyle(
+//                        style = SpanStyle(color = purple)
+//                    ) {
+//                        append(alarmList.size.toString())
+//                    }
+                    append("새로운 알람이 존재합니다. 확인해보세요")
                 }
             )
         }
@@ -111,6 +112,7 @@ fun NotificationScreen(alarmList: List<notiDataClass>) {
 @Composable
 fun NofiSlider(alarmList: List<notiDataClass>) {
     var scrollState by remember { mutableFloatStateOf(0f) }
+    var notifications: List<notiDataClass> by remember { mutableStateOf(alarmList) }
 
     LazyColumn(
         modifier = Modifier
@@ -125,15 +127,33 @@ fun NofiSlider(alarmList: List<notiDataClass>) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(9.dp)
     ) {
-        items(alarmList.size) {
+//        items(alarmList.size) {
+//            // Composable function for each card
+//            NofiCard(alarm = alarmList[it])
+//        }
+        items(notifications.size) { index ->
             // Composable function for each card
-            NofiCard(alarm = alarmList[it])
+            NofiCard(alarm = notifications[index]) { accepted ->
+                // 추가: 콜백 함수를 통해 카드 삭제 로직
+                if (accepted) {
+                    // 알림 수락에 대한 로직
+                    // 예시로 알림 목록에서 해당 알림을 제거합니다.
+                    notifications = notifications.toMutableList().apply {
+                        removeAt(index)
+                    }
+                } else {
+                    // 알림 거절에 대한 로직
+                    notifications = notifications.toMutableList().apply {
+                        removeAt(index)
+                    }
+                }
+            }
         }
     }
 }
 
 @Composable
-fun NofiCard(alarm: notiDataClass) {
+fun NofiCard(alarm: notiDataClass, onActionClick: (Boolean) -> Unit) {
     ElevatedCard(
         elevation = CardDefaults.cardElevation(
             defaultElevation = 4.dp
@@ -178,6 +198,7 @@ fun NofiCard(alarm: notiDataClass) {
                 Button(
                     onClick ={
                         //수락완료 팝업 후 종료
+                        onActionClick(true)
                     },
                     colors= ButtonDefaults.buttonColors(containerColor = light_pink,contentColor = pink)
                 ) {
@@ -186,6 +207,7 @@ fun NofiCard(alarm: notiDataClass) {
                 Button(
                     onClick ={
                         //거절 완료 팝업 후 종료
+                        onActionClick(false)
                     },
                     colors= ButtonDefaults.buttonColors(containerColor = gray02,contentColor = gray01)
                 ) {
