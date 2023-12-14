@@ -54,7 +54,6 @@
             android:exported="false"
             android:label="My Scheduler"
             android:theme="@style/Theme.MyAlbaEz"></activity>
-        </activity>
         <activity android:name=".ui.screens.homeScreen.HomeActivity"
             android:exported="true"
             android:label=""
