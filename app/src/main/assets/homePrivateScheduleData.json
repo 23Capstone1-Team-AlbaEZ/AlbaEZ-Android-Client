@@ -1,12 +1,12 @@
 [
   {
-    "workplaceName": "McDonalds Soongsil",
+    "workplaceName": "맥도날드 숭실대점",
     "scheduleList": [
       {
         "scheduleId": 1,
         "memberID": 1,
         "week": 0,
-        "day": "MON",
+        "day": "월요일",
         "startTime": "12:00",
         "endTime": "15:00"
       },
@@ -14,7 +14,7 @@
         "scheduleId": 2,
         "memberID": 1,
         "week": 1,
-        "day": "MON",
+        "day": "월요일",
         "startTime": "16:00",
         "endTime": "23:00"
       },
@@ -22,7 +22,7 @@
         "scheduleId": 3,
         "memberID": 1,
         "week": 2,
-        "day": "SAT",
+        "day": "토요일",
         "startTime": "18:00",
         "endTime": "20:00"
       },
@@ -30,20 +30,20 @@
         "scheduleId": 4,
         "memberID": 1,
         "week": 3,
-        "day": "SAT",
+        "day": "토요일",
         "startTime": "20:00",
         "endTime": "22:00"
       }
     ]
   },
   {
-    "workplaceName": "Domino Pizza Soongsil",
+    "workplaceName": "도미노피자 숭실대점",
     "scheduleList": [
       {
         "scheduleId": 1,
         "memberID": 1,
         "week": 0,
-        "day": "MON",
+        "day": "월요일",
         "startTime": "12:00",
         "endTime": "15:00"
       },
@@ -51,7 +51,7 @@
         "scheduleId": 2,
         "memberID": 1,
         "week": 1,
-        "day": "MON",
+        "day": "월요일",
         "startTime": "06:00",
         "endTime": "08:00"
       },
@@ -59,20 +59,20 @@
         "scheduleId": 3,
         "memberID": 1,
         "week": 2,
-        "day": "TUE",
+        "day": "화요일",
         "startTime": "16:00",
         "endTime": "23:00"
       }
     ]
   },
   {
-    "workplaceName": "BBackDaBang Soongsil",
+    "workplaceName": "백다방 숭실대점",
     "scheduleList": [
       {
         "scheduleId": 1,
         "memberID": 1,
         "week": 0,
-        "day": "MON",
+        "day": "월요일",
         "startTime": "12:00",
         "endTime": "15:00"
       },
@@ -80,7 +80,7 @@
         "scheduleId": 2,
         "memberID": 1,
         "week": 1,
-        "day": "MON",
+        "day": "월요일",
         "startTime": "06:00",
         "endTime": "08:00"
       },
@@ -88,7 +88,7 @@
         "scheduleId": 3,
         "memberID": 1,
         "week": 2,
-        "day": "TUE",
+        "day": "화요일",
         "startTime": "16:00",
         "endTime": "23:00"
       }

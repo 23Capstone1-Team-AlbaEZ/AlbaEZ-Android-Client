@@ -182,7 +182,7 @@ fun MyCard(card: homeWorkCard) {
                     Text(
                         text = workTimeZoneText,
                         color = Color.White,
-                        fontSize = 12.sp,
+                        fontSize = 11.sp,
                         textAlign = TextAlign.Center,
                     )
                     /*Spacer(modifier = Modifier.height(1.dp))*/

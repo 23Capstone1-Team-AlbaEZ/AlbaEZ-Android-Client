@@ -4,9 +4,9 @@
     "userID": 1,
     "workplaceID": 1,
     "status": true,
-    "adjustDate": "2023-11-17",
-    "person": "OOO",
-    "startTime": "13:00",
+    "adjustDate": "2023-12-13",
+    "person": "김민재",
+    "startTime": "10:00",
     "content": "새로운 일정 조정 신청이 있습니다."
   },
   {
@@ -14,9 +14,9 @@
     "userID": 1,
     "workplaceID": 2,
     "status": true,
-    "adjustDate": "2023-11-17",
-    "person": "OOO",
-    "startTime": "13:00",
+    "adjustDate": "2023-12-05",
+    "person": "장은영",
+    "startTime": "18:00",
     "content": "새로운 일정 조정 신청이 있습니다."
   },
   {
@@ -24,9 +24,9 @@
     "userID": 1,
     "workplaceID": 1,
     "status": true,
-    "adjustDate": "2023-11-17",
-    "person": "OOO",
-    "startTime": "13:00",
+    "adjustDate": "2023-11-30",
+    "person": "김태현",
+    "startTime": "17:00",
     "content": "새로운 일정 조정 신청이 있습니다."
   },
   {
@@ -34,9 +34,9 @@
     "userID": 1,
     "workplaceID": 1,
     "status": true,
-    "adjustDate": "2023-11-17",
-    "person": "OOO",
-    "startTime": "13:00",
+    "adjustDate": "2023-11-29",
+    "person": "구교민",
+    "startTime": "21:00",
     "content": "새로운 일정 조정 신청이 있습니다."
   }
 ]

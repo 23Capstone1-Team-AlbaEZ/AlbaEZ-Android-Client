@@ -149,6 +149,9 @@ fun gigjobPostCard(card: gigjobPost) {
                 .padding(16.dp)
         ) {
             Row(
+                modifier=Modifier
+                    .fillMaxWidth()
+                    .padding(end=10.dp),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
@@ -190,7 +193,9 @@ fun gigjobPostCard(card: gigjobPost) {
             Spacer(modifier = Modifier.height(13.dp))
 
             Text(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(end=10.dp),
                 text = card.address,
                 style = gigJobPostTypo.displayMedium,
                 color = gray02,

@@ -30,10 +30,10 @@ class ScheduleViewModel() : ViewModel() {
     var currentWorker: MutableState<Int> = mutableStateOf(0)
 
     /*var scheds=getJsonData(application.applicationContext,"PersonalScheduleData.json")*/
-    val scheds1 = PSdata(workplace = "맥도날드 숭실대점", psID = 1, date = 0, startTime = 9, endTime = 14, role = "홀")
-    val scheds2 = PSdata(workplace = "맥도날드 숭실대점", psID = 2, date = 1, startTime = 16, endTime = 21, role = "홀")
-    val scheds3 = PSdata(workplace = "백다방 숭실대점", psID = 3, date = 2, startTime = 9, endTime = 12, role = "주방")
-    val scheds4 = PSdata(workplace = "맥도날드 숭실대점", psID = 4, date = 3, startTime = 16, endTime = 21, role = "홀")
+    val scheds1 = PSdata(workplace = "맥도날드 숭실대점", psID = 1, date = 0, startTime = 10, endTime = 14, role = "홀")
+    val scheds2 = PSdata(workplace = "맥도날드 숭실대점", psID = 2, date = 1, startTime = 14, endTime = 17, role = "홀")
+    val scheds3 = PSdata(workplace = "백다방 숭실대점", psID = 3, date = 2, startTime = 16, endTime = 21, role = "주방")
+    val scheds4 = PSdata(workplace = "맥도날드 숭실대점", psID = 4, date = 3, startTime = 11, endTime = 15, role = "홀")
     val scheds5 = PSdata(workplace = "맥도날드 숭실대점", psID = 5, date = 4, startTime = 9, endTime = 14, role = "홀")
     val scheds: Array<PSdata> = arrayOf(scheds1,scheds2,scheds3,scheds4,scheds5)
 

@@ -47,18 +47,18 @@ import com.example.myalbaez.ui.theme.yellow
 import com.google.gson.Gson
 import java.io.InputStreamReader
 
-class NotiMangerActivity(alarmList: List<notiDataClass>) : ComponentActivity() {
+class NotiMangerActivity() : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 WindowCompat.setDecorFitsSystemWindows(window, false)
                 val controller = WindowInsetsControllerCompat(window, window.decorView)
                 controller.hide(WindowInsetsCompat.Type.systemBars())
                 controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
             } else {
                 window.decorView.systemUiVisibility = android.view.View.SYSTEM_UI_FLAG_FULLSCREEN
-            }
+            }*/
             val jsonData = assets.open("notificationDataManager.json")
                 .use { InputStreamReader(it).readText() }
 
@@ -147,7 +147,7 @@ fun NofiManagerCard(alarm: notiDataClass) {
                     alarm.content+"\n"+alarm.adjustDate+" "+alarm.startTime+"\n신청자 "+alarm.person
                 }
                 "근무자를 배정할 지 확인해주세요." -> {
-                    alarm.adjustDate+" "+alarm.startTime+"일정 조정에 "+alarm.person+"님이 수락하셨어요. \n"+alarm.content
+                    alarm.adjustDate+" "+alarm.startTime+"일정 조정에 \n"+alarm.person+"님이 수락하셨어요. \n"+alarm.content
                 }
                 else -> {alarm.content}
             }

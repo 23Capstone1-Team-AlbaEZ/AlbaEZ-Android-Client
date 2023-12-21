@@ -4,9 +4,9 @@
     "userID": 1,
     "workplaceID": 1,
     "status": true,
-    "adjustDate": "2023-11-17",
-    "person": "OOO",
-    "startTime": "13:00",
+    "adjustDate": "2023-12-18",
+    "person": "김희환",
+    "startTime": "10:00",
     "content": "근무자를 배정할 지 확인해주세요."
   },
   {
@@ -14,9 +14,9 @@
     "userID": 1,
     "workplaceID": 2,
     "status": true,
-    "adjustDate": "2023-11-17",
-    "person": "OOO",
-    "startTime": "13:00",
+    "adjustDate": "2023-12-18",
+    "person": "김태현",
+    "startTime": "10:00",
     "content": "근무자를 배정할 지 확인해주세요."
   },
   {
@@ -24,9 +24,9 @@
     "userID": 1,
     "workplaceID": 1,
     "status": true,
-    "adjustDate": "2023-11-17",
-    "person": "OOO",
-    "startTime": "13:00",
+    "adjustDate": "2023-11-30",
+    "person": "송승우",
+    "startTime": "9:00",
     "content": "근무자를 배정할 지 확인해주세요."
   },
   {
@@ -34,8 +34,8 @@
     "userID": 1,
     "workplaceID": 1,
     "status": true,
-    "adjustDate": "2023-11-17",
-    "person": "OOO",
+    "adjustDate": "2023-11-18",
+    "person": "구교민",
     "startTime": "13:00",
     "content": "근무자를 배정할 지 확인해주세요."
   }

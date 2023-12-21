@@ -113,7 +113,7 @@ fun ManagerSchedule(viewModel: ScheduleViewModel = viewModel()) {
             Text(
                 modifier = Modifier
                     .height(30.dp),
-                text = "일정 조정 요청 수락 인원 확정",
+                text = "일정 조정 배정 인원 확정",
                 fontSize = 20.sp,
                 fontFamily = FontFamily(Font(R.font.nanumgothic)),
                 fontWeight = FontWeight.ExtraBold,
@@ -327,18 +327,19 @@ fun MyManagerCard(
 
         Column(
             modifier=Modifier.verticalScroll(scrollState)
+                .padding(start = 10.dp, end = 10.dp, bottom = 10.dp)
         ){
             Box(
                 modifier = Modifier
                     .background(color = pure_white)
-                    .fillMaxWidth()
+                    .size(height = 350.dp,width=500.dp)
                     .border(1.dp, gray01,RoundedCornerShape(5.dp))
-                    .height(300.dp)
+                    .align(Alignment.CenterHorizontally)
                     .clip(RoundedCornerShape(5.dp)),
             ) {
                 Column(
                     modifier = Modifier
-                        .padding(start = 60.dp)
+                        .offset(x=60.dp)
                         .verticalScroll(scrollState)
                 ) {
                     Spacer(modifier = Modifier.height(10.dp))
@@ -381,7 +382,7 @@ fun MyManagerCard(
                         Spacer(Modifier.height(10.dp))
                         Text(
                             fontWeight = FontWeight.Bold,
-                            text = "긱잡 공고 지원 근무자 명단",
+                            text = "긱잡 공고 지원자 명단",
                             color = pink,
                             fontSize = 16.sp,
                         )
@@ -493,7 +494,7 @@ private fun coWorkerCardCol(image: Painter, memberId: String, condition:Boolean)
     Column(
         modifier = Modifier
             .padding(2.dp)
-            .size(48.dp),
+            .size(52.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -509,7 +510,7 @@ private fun coWorkerCardCol(image: Painter, memberId: String, condition:Boolean)
         Spacer(modifier = Modifier.height(0.dp))
         Text(
             text = memberId,
-            fontSize = 10.sp
+            fontSize = 12.sp
         )
     }
 }

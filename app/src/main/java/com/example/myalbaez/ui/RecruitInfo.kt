@@ -97,7 +97,7 @@ private fun mainInfo(){
                 style = androidx.compose.ui.text.TextStyle(
                     fontSize = 25.sp,
                     fontFamily = FontFamily(Font(R.font.nanumgothic)),
-                    fontWeight = FontWeight(700),
+                    fontWeight = FontWeight.ExtraBold,
                     color = gray01,
                 )
             )

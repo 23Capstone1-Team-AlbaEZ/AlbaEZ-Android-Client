@@ -312,7 +312,7 @@ fun MyCard(
                     modifier = Modifier.padding(start = 60.dp)
                 )
                 Text(
-                    text = "${viewModel.scheds[viewModel.currentWorker.value].startTime.toString()} ~ ${viewModel.scheds[viewModel.currentWorker.value].endTime.toString()}",
+                    text = "${viewModel.scheds[viewModel.currentWorker.value].startTime.toString()}시 ~ ${viewModel.scheds[viewModel.currentWorker.value].endTime.toString()}시",
                     modifier = Modifier.padding(start = 60.dp)
                 )
                 Text(text = "\n")
