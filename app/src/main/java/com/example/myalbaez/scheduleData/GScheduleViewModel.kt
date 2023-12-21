@@ -6,6 +6,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.myalbaez.scheduleData.ScheduleViewModel
 import java.time.DayOfWeek
 import java.time.LocalDate
 
@@ -111,6 +112,7 @@ class GScheduleViewModel : ViewModel() {
 */
 }
 
+/*
 class GScheduleViewModelFactory() : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ScheduleViewModel::class.java)) {
@@ -120,4 +122,4 @@ class GScheduleViewModelFactory() : ViewModelProvider.Factory {
         throw IllegalAccessException("Unkown ViewModel class")
     }
 
-}
+}*/

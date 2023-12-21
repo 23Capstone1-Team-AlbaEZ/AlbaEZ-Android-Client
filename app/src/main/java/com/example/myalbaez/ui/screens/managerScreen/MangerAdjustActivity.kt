@@ -1,4 +1,4 @@
-package com.example.myalbaez
+package com.example.myalbaez.ui.screens.managerScreen
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -7,17 +7,23 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.absoluteOffset
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Divider
@@ -27,14 +33,17 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -44,11 +53,19 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.myalbaez.MyCard
+import com.example.myalbaez.R
+import com.example.myalbaez.Schedule
+import com.example.myalbaez.navigateToAnotherActivity
+import com.example.myalbaez.scheduleData.ScheduleViewModel
 import com.example.myalbaez.ui.Reschedule
 import com.example.myalbaez.ui.theme.MyAlbaEzTheme
-import com.example.myalbaez.scheduleData.ScheduleViewModel
+import com.example.myalbaez.ui.theme.gray01
+import com.example.myalbaez.ui.theme.pink
+import com.example.myalbaez.ui.theme.pure_white
+import com.example.myalbaez.ui.theme.white
 
-class MyScheduler : ComponentActivity() {
+class MangerAdjustActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -62,13 +79,11 @@ class MyScheduler : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
-
-
-                    Schedule()
+                    ManagerSchedule()
                     Column(
                         verticalArrangement = Arrangement.Bottom,
                     ) {
-                        MyCard()
+                        MyManagerCard()
                     }
                 }
             }
@@ -77,7 +92,7 @@ class MyScheduler : ComponentActivity() {
 }
 
 @Composable
-fun Schedule(viewModel: ScheduleViewModel = viewModel()) {
+fun ManagerSchedule(viewModel: ScheduleViewModel = viewModel()) {
     val schedule = viewModel
     var state = 0
     val context = LocalContext.current
@@ -97,12 +112,11 @@ fun Schedule(viewModel: ScheduleViewModel = viewModel()) {
         ) {
             Text(
                 modifier = Modifier
-                    .width(64.dp)
                     .height(30.dp),
-                text = "내 일정",
+                text = "일정 조정 요청 수락 인원 확정",
                 fontSize = 20.sp,
                 fontFamily = FontFamily(Font(R.font.nanumgothic)),
-                fontWeight = FontWeight(700),
+                fontWeight = FontWeight.ExtraBold,
                 color = Color(0xFF5B5B5B),
                 letterSpacing = 0.4.sp,
             )
@@ -286,7 +300,7 @@ fun Schedule(viewModel: ScheduleViewModel = viewModel()) {
 }
 
 @Composable
-fun MyCard(
+fun MyManagerCard(
 ) {
     val viewModel = viewModel<ScheduleViewModel>()
     Column(
@@ -294,111 +308,225 @@ fun MyCard(
     ) {
         viewModel.setWeek()
         val context = LocalContext.current
-        Box(
-            modifier = Modifier
-                .background(color = Color.White)
-                .fillMaxWidth()
-                .height(250.dp),
+        val scrollState= rememberScrollState()
 
+        val imageResourceIds1: List<Int> = listOf(
+            R.drawable.a,
+            R.drawable.b,
+            R.drawable.c
+        )
+        val imageResourceIds2: List<Int> = listOf(
+            R.drawable.d,
+            R.drawable.e,
+            R.drawable.f
+        )
+        val members1 : Array<String> = arrayOf("김희환", "김태현", "송승우")
+        val members2 : Array<String> = arrayOf("구교민", "옥채연", "손흥민")
+        val imagePainter1: List<Painter> = imageResourceIds1.map { painterResource(id = it) }
+        val imagePainter2: List<Painter> = imageResourceIds2.map { painterResource(id = it) }
+
+        Column(
+            modifier=Modifier.verticalScroll(scrollState)
+        ){
+            Box(
+                modifier = Modifier
+                    .background(color = pure_white)
+                    .fillMaxWidth()
+                    .border(1.dp, gray01,RoundedCornerShape(5.dp))
+                    .height(300.dp)
+                    .clip(RoundedCornerShape(5.dp)),
             ) {
-            Column {
-                Text(text = "\n")
-                Text(
-                    text = "${viewModel.dateList[viewModel.scheds[viewModel.currentWorker.value].date!!]}",
-                    modifier = Modifier.padding(start = 60.dp)
-                )
-                Text(
-                    text = "${viewModel.scheds[viewModel.currentWorker.value].workplace.toString()}",
-                    modifier = Modifier.padding(start = 60.dp)
-                )
-                Text(
-                    text = "${viewModel.scheds[viewModel.currentWorker.value].startTime.toString()} ~ ${viewModel.scheds[viewModel.currentWorker.value].endTime.toString()}",
-                    modifier = Modifier.padding(start = 60.dp)
-                )
-                Text(text = "\n")
-                Text(
-                    text = "역할 : ${viewModel.scheds[viewModel.currentWorker.value].role.toString()}",
-                    modifier = Modifier.padding(start = 60.dp)
-                )
-                Text(text = "\n")
-
-                Row(
+                Column(
                     modifier = Modifier
-                        .background(color = Color.White)
-                        .fillMaxWidth()
-                        .height(250.dp),
-                    horizontalArrangement = Arrangement.Center,
-                    verticalAlignment = Alignment.CenterVertically
+                        .padding(start = 60.dp)
+                        .verticalScroll(scrollState)
                 ) {
-                    Image(
-                        modifier = Modifier
-                            .width(37.dp)
-                            .height(40.dp)
-                            .background(color = Color.Transparent)
-                            .clickable {
-                                viewModel.prevWorker()
-                            },
-                        painter = painterResource(id = R.drawable.prev),
-                        contentDescription = "image description",
-                        contentScale = ContentScale.None,
-                        colorFilter = ColorFilter.tint(Color(0xFFF17070))
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Text(
+                        fontWeight = FontWeight.Bold,
+                        text = "${viewModel.dateList[viewModel.scheds[viewModel.currentWorker.value].date!!]}" +
+                                "  ${viewModel.scheds[viewModel.currentWorker.value].workplace.toString()}",
+                        fontSize = 18.sp,
+                        color = pink
                     )
-                    Text(text = "일정 조정 신청하기",
-                        fontWeight = FontWeight(1000),
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Text(
+                        text = "일정조정 요청자 : 김민재",
+                        modifier = Modifier.padding(start = 10.dp),
+                        fontSize = 14.sp,
+                    )
+                    Spacer(modifier = Modifier.height(5.dp))
+                    Text(
+                        text = "시간 : ${viewModel.scheds[viewModel.currentWorker.value].startTime.toString()}시 ~ ${viewModel.scheds[viewModel.currentWorker.value].endTime.toString()}시",
+                        modifier = Modifier.padding(start = 10.dp),
+                        fontSize = 14.sp,
+                    )
+                    Spacer(modifier = Modifier.height(5.dp))
+                    Text(
+                        text = "역할 : ${viewModel.scheds[viewModel.currentWorker.value].role.toString()}",
+                        modifier = Modifier.padding(start = 10.dp),
+                        fontSize = 14.sp,
+                    )
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Column {
+                        Text(
+                            fontWeight = FontWeight.Bold,
+                            text = "업장 내 근무자 수락 명단",
+                            color = pink,
+                            fontSize = 16.sp,
+                        )
+                        val member1Condition = SelectCondition(false, true, true)
+                        coWorkerCardRow(imagePainter1, members1, member1Condition)
+
+                        Spacer(Modifier.height(10.dp))
+                        Text(
+                            fontWeight = FontWeight.Bold,
+                            text = "긱잡 공고 지원 근무자 명단",
+                            color = pink,
+                            fontSize = 16.sp,
+                        )
+                        val member2Condition = SelectCondition(true, true, true)
+                        coWorkerCardRow(imagePainter2, members2, member2Condition)
+                    }
+
+                }
+                Box(
+                    modifier = Modifier
+                        .height(50.dp)
+                        .align(Alignment.BottomCenter),
+                ) {
+                    Row(
                         modifier = Modifier
-                            .border(
-                                width = 1.dp,
+                            .background(color = Color.White)
+                            .fillMaxWidth()
+                            .absoluteOffset(5.dp),
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Image(
+                            modifier = Modifier
+                                .width(37.dp)
+                                .height(40.dp)
+                                .background(color = Color.Transparent)
+                                .clickable {
+                                    viewModel.prevWorker()
+                                },
+                            painter = painterResource(id = R.drawable.prev),
+                            contentDescription = "image description",
+                            contentScale = ContentScale.None,
+                            colorFilter = ColorFilter.tint(Color(0xFFF17070))
+                        )
+                        Text(text = "인원 배정 확정하기",
+                            fontWeight = FontWeight(1000),
+                            modifier = Modifier
+                                .border(
+                                    width = 1.dp,
+                                    color = Color(0xFFF17070),
+                                    shape = RoundedCornerShape(size = 10.dp)
+                                )
+                                .clickable {
+                                    /*navigateToAnotherActivity(context, Reschedule::class.java)*/
+                                }
+                                .padding(top = 10.dp)
+                                .width(264.dp)
+                                .height(34.dp)
+                                .background(color = Color(0xFFFFFFFF)),
+                            style = TextStyle(
+                                fontSize = 14.sp,
+                                fontFamily = FontFamily(Font(R.font.nanumgothic)),
+                                fontWeight = FontWeight(800),
                                 color = Color(0xFFF17070),
-                                shape = RoundedCornerShape(size = 10.dp)
+
+                                textAlign = TextAlign.Center,
                             )
-                            .clickable {
-                                navigateToAnotherActivity(context, Reschedule::class.java)
-                            }
-                            .padding(top = 10.dp)
-                            .width(264.dp)
-                            .height(34.dp)
-                            .background(color = Color(0xFFFFFFFF)),
-                        style = TextStyle(
-                            fontSize = 14.sp,
-                            fontFamily = FontFamily(Font(R.font.nanumgothic)),
-                            fontWeight = FontWeight(800),
-                            color = Color(0xFFF17070),
+                        )
 
-                            textAlign = TextAlign.Center,
-                        ))
-
-                    Image(
-                        modifier = Modifier
-                            .width(37.dp)
-                            .height(40.dp)
-                            .background(color = Color.Transparent)
-                            .clickable {
-                                viewModel.nextWorker()
-                            },
-                        painter = painterResource(id = R.drawable.prev2),
-                        contentDescription = "image description",
-                        contentScale = ContentScale.None,
-                        colorFilter = ColorFilter.tint(Color(0xFFF17070))
-                    )
+                        Image(
+                            modifier = Modifier
+                                .width(37.dp)
+                                .height(40.dp)
+                                .background(color = Color.Transparent)
+                                .clickable {
+                                    viewModel.nextWorker()
+                                },
+                            painter = painterResource(id = R.drawable.prev2),
+                            contentDescription = "image description",
+                            contentScale = ContentScale.None,
+                            colorFilter = ColorFilter.tint(Color(0xFFF17070))
+                        )
+                    }
                 }
             }
         }
     }
 }
 
+class SelectCondition (
+    val condition1: Boolean,
+    val condition2: Boolean,
+    val condition3: Boolean
+)
+
+@Composable
+private fun coWorkerCardRow(image: List<Painter>, memberId: Array<String>, conditions:SelectCondition) {
+    Row(
+        modifier = Modifier
+            .background(Color.Transparent)
+            .offset(x=10.dp)
+    ){
+        coWorkerCardCol(image[0], memberId[0], conditions.condition1)
+        Spacer(modifier = Modifier.width(16.dp)) // Col 사이의 간격을 설정합니다.
+        coWorkerCardCol(image[1], memberId[1], conditions.condition2)
+        Spacer(modifier = Modifier.width(16.dp))
+        coWorkerCardCol(image[2], memberId[2], conditions.condition3)
+    }
+}
+
+@Composable
+private fun coWorkerCardCol(image: Painter, memberId: String, condition:Boolean){
+    val borderModifier = if (condition) {
+        Modifier.border(width = 2.dp, color = Color.Transparent, shape = RoundedCornerShape(size = 32.dp))
+
+    } else {
+        Modifier.border(width = 2.dp, color = pink, shape = RoundedCornerShape(size = 36.dp))
+    }
+    Column(
+        modifier = Modifier
+            .padding(2.dp)
+            .size(48.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Image(
+            painter = image,
+            modifier = Modifier
+                .size(36.dp)
+                .clip(CircleShape)
+                .then(borderModifier),
+            contentDescription = null,
+            contentScale = ContentScale.FillBounds
+        )
+        Spacer(modifier = Modifier.height(0.dp))
+        Text(
+            text = memberId,
+            fontSize = 10.sp
+        )
+    }
+}
+
 @Preview
 @Composable
-fun MyCardPreview() {
+fun MyManagerCardPreview() {
     MyAlbaEzTheme {
         // A surface container using the 'background' color from the theme
         Surface(
             modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
         ) {
-            Schedule()
+            ManagerSchedule()
             Column(
                 verticalArrangement = Arrangement.Bottom,
             ) {
-                MyCard()
+                MyManagerCard()
             }
         }
     }
